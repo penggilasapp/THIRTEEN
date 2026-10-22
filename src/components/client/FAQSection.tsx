@@ -73,28 +73,30 @@ export const FAQSection: React.FC<FAQSectionProps> = ({
   };
 
   return (
-    <section id={id} className="py-24 bg-white text-slate-800 px-4 sm:px-6 lg:px-8 border-b border-stone-200">
-      <div className="max-w-5xl mx-auto space-y-12">
-        {/* Section Header */}
+    <section id={id} className="py-20 sm:py-24 bg-white text-slate-800 px-4 sm:px-6 lg:px-8 border-b border-stone-200">
+      <div className="max-w-7xl mx-auto space-y-10">
+        {/* Section Header with Left Title & Right Subtitle */}
         {showHeader && (
-          <div className="text-center max-w-3xl mx-auto space-y-4">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-semibold">
-              <HelpCircle className="w-3.5 h-3.5 text-emerald-700" />
-              <span>Traveler Information &amp; Operational Standards</span>
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div className="space-y-2 max-w-2xl">
+              <div className="inline-flex items-center gap-2 text-xs uppercase font-bold tracking-widest text-emerald-900">
+                <HelpCircle className="w-4 h-4 text-emerald-800" />
+                <span>Traveler Information &amp; Operational Standards</span>
+              </div>
+
+              <h2 className="text-3xl sm:text-4xl font-extrabold font-['Playfair_Display'] text-slate-900">
+                Frequently Asked Questions
+              </h2>
             </div>
 
-            <h2 className="text-3xl sm:text-5xl font-extrabold font-['Playfair_Display'] text-slate-900 tracking-tight">
-              Frequently Asked Questions
-            </h2>
-
-            <p className="text-stone-600 text-sm sm:text-base leading-relaxed">
-              Clear, transparent answers regarding booking procedures, visa regulations, health screening, mountain safety gear, and overland logistics across Bali, Bromo, Ijen, and Yogyakarta.
+            <p className="text-stone-600 text-xs sm:text-sm max-w-md md:text-right leading-relaxed">
+              Clear, transparent answers regarding booking procedures, visa regulations, health screening, and overland logistics.
             </p>
           </div>
         )}
 
-        {/* Search Bar & Stats */}
-        <div className="relative max-w-2xl mx-auto">
+        {/* Search Bar */}
+        <div className="relative w-full">
           <div className="relative flex items-center">
             <Search className="w-5 h-5 text-stone-400 absolute left-4 pointer-events-none" />
             <input
@@ -102,7 +104,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search questions or keywords (e.g. visa, deposit, 3M respirator, Bromo cold, ferry...)"
-              className="w-full pl-12 pr-10 py-3.5 text-xs sm:text-sm bg-[#FAF9F6] border border-stone-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-emerald-700 focus:bg-white transition-all shadow-2xs"
+              className="w-full pl-12 pr-10 py-3.5 text-xs sm:text-sm bg-[#FAF9F6] border border-stone-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-emerald-800 focus:bg-white transition-all shadow-2xs"
             />
             {searchQuery && (
               <button
@@ -128,9 +130,8 @@ export const FAQSection: React.FC<FAQSectionProps> = ({
         </div>
 
         {/* Category Filter Pills */}
-        <div className="flex flex-wrap items-center justify-center gap-2 pt-2">
+        <div className="flex flex-wrap items-center gap-2">
           {categories.map((cat) => {
-            const Icon = cat.icon;
             const isSelected = selectedCategory === cat.key;
             const count = cat.key === 'all' 
               ? FAQS_DATA.length 
@@ -143,10 +144,9 @@ export const FAQSection: React.FC<FAQSectionProps> = ({
                 className={`px-3.5 py-2 rounded-xl text-xs font-semibold transition-all flex items-center gap-2 cursor-pointer ${
                   isSelected
                     ? 'bg-[#0F2922] text-white shadow-xs'
-                    : 'bg-stone-100/80 text-stone-600 hover:bg-stone-200/80 hover:text-stone-900'
+                    : 'bg-stone-100 text-stone-600 hover:bg-stone-200/80 hover:text-stone-900'
                 }`}
               >
-                <Icon className={`w-3.5 h-3.5 ${isSelected ? 'text-emerald-300' : 'text-stone-500'}`} />
                 <span>{cat.label}</span>
                 <span className={`text-[10px] px-1.5 py-0.5 rounded-full font-mono ${
                   isSelected ? 'bg-white/20 text-white' : 'bg-stone-200 text-stone-700'
@@ -158,8 +158,27 @@ export const FAQSection: React.FC<FAQSectionProps> = ({
           })}
         </div>
 
+        {/* FAQ Accordion List Header with View All FAQs Link */}
+        <div className="flex items-center justify-between pt-2">
+          <span className="text-xs font-bold text-stone-400 uppercase tracking-wider">
+            Questions &amp; Direct Answers
+          </span>
+          <a
+            href="#faq"
+            onClick={(e) => {
+              e.preventDefault();
+              setSelectedCategory('all');
+              setSearchQuery('');
+            }}
+            className="text-xs font-bold text-emerald-900 hover:text-emerald-950 flex items-center gap-1 hover:underline"
+          >
+            <span>View All FAQs</span>
+            <ExternalLink className="w-3.5 h-3.5" />
+          </a>
+        </div>
+
         {/* FAQ Accordion List */}
-        <div className="space-y-3.5">
+        <div className="space-y-3">
           {filteredFaqs.length === 0 ? (
             <div className="text-center py-12 px-4 rounded-3xl bg-stone-50 border border-stone-200 space-y-3">
               <HelpCircle className="w-8 h-8 text-stone-400 mx-auto" />
@@ -177,7 +196,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({
               </div>
             </div>
           ) : (
-            filteredFaqs.map((faq) => {
+            filteredFaqs.slice(0, showHeader ? 5 : undefined).map((faq) => {
               const isExpanded = expandedId === faq.id;
               const isHelpful = helpfulFeedback[faq.id];
 
@@ -193,41 +212,31 @@ export const FAQSection: React.FC<FAQSectionProps> = ({
                   {/* Question Button */}
                   <button
                     onClick={() => toggleExpand(faq.id)}
-                    className="w-full p-5 sm:p-6 text-left flex items-start justify-between gap-4 cursor-pointer"
+                    className="w-full p-4 sm:p-5 text-left flex items-center justify-between gap-4 cursor-pointer"
                   >
-                    <div className="space-y-1.5 grow">
-                      <div className="flex items-center gap-2 flex-wrap">
-                        <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200">
-                          {faq.category}
-                        </span>
-                        {faq.tags && faq.tags.slice(0, 3).map((tag, i) => (
-                          <span key={i} className="text-[10px] text-stone-500 font-medium bg-stone-100 px-2 py-0.5 rounded-md">
-                            #{tag}
-                          </span>
-                        ))}
-                      </div>
+                    <h3 className={`text-xs sm:text-sm font-semibold transition-colors ${
+                      isExpanded ? 'text-emerald-950 font-bold' : 'text-slate-800'
+                    }`}>
+                      {faq.question}
+                    </h3>
 
-                      <h3 className={`text-sm sm:text-base font-bold transition-colors ${
-                        isExpanded ? 'text-emerald-950 font-[\'Playfair_Display\']' : 'text-slate-800'
-                      }`}>
-                        {faq.question}
-                      </h3>
-                    </div>
-
-                    <div className={`p-1.5 rounded-xl shrink-0 transition-colors ${
-                      isExpanded ? 'bg-emerald-100 text-emerald-900' : 'bg-stone-200/70 text-stone-600'
+                    {/* Circular expander button */}
+                    <div className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-colors border ${
+                      isExpanded 
+                        ? 'bg-[#0F2922] text-white border-[#0F2922]' 
+                        : 'bg-white text-stone-500 border-stone-200 hover:border-emerald-800'
                     }`}>
                       {isExpanded ? (
-                        <ChevronUp className="w-4 h-4" />
+                        <span className="text-sm font-bold leading-none">−</span>
                       ) : (
-                        <ChevronDown className="w-4 h-4" />
+                        <span className="text-sm font-bold leading-none">+</span>
                       )}
                     </div>
                   </button>
 
                   {/* Answer Content */}
                   {isExpanded && (
-                    <div className="px-5 pb-6 sm:px-6 pt-1 border-t border-stone-100 text-xs sm:text-sm text-stone-600 leading-relaxed space-y-4">
+                    <div className="px-5 pb-5 sm:px-6 pt-1 border-t border-stone-100 text-xs sm:text-sm text-stone-600 leading-relaxed space-y-4">
                       <p className="whitespace-pre-line text-stone-700">
                         {faq.answer}
                       </p>

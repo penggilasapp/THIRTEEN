@@ -38,7 +38,7 @@ export const HeroSection: React.FC = () => {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-2 sm:pt-4 w-full max-w-md sm:max-w-none mx-auto">
           <button
             onClick={() => setClientPage('tours')}
-            className="w-full sm:w-auto px-7 sm:px-8 py-3.5 sm:py-4 rounded-xl bg-white text-emerald-950 hover:bg-emerald-50 font-bold text-xs uppercase tracking-wider shadow-xl transition-all flex items-center justify-center gap-2 group cursor-pointer min-h-[48px]"
+            className="w-full sm:w-auto px-7 sm:px-8 py-3.5 sm:py-4 rounded-xl bg-white text-emerald-950 hover:bg-stone-100 font-bold text-xs uppercase tracking-wider shadow-xl transition-all flex items-center justify-center gap-2 group cursor-pointer min-h-[48px]"
           >
             <span>EXPLORE OUR TOURS</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -46,42 +46,50 @@ export const HeroSection: React.FC = () => {
 
           <button
             onClick={() => openInquireForPackage()}
-            className="w-full sm:w-auto px-6 sm:px-7 py-3.5 sm:py-4 rounded-xl bg-white/10 hover:bg-white/20 text-white border border-white/20 font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 backdrop-blur-md cursor-pointer min-h-[48px]"
+            className="w-full sm:w-auto px-6 sm:px-7 py-3.5 sm:py-4 rounded-xl bg-[#0F2922] hover:bg-[#153A30] text-white border border-emerald-800/60 font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-lg cursor-pointer min-h-[48px]"
           >
-            <Compass className="w-4 h-4 text-emerald-300" />
+            <div className="w-5 h-5 rounded-full bg-emerald-800/70 flex items-center justify-center">
+              <Compass className="w-3.5 h-3.5 text-emerald-200" />
+            </div>
             <span>PLAN YOUR JOURNEY</span>
           </button>
         </div>
 
         {/* Trust Pillars */}
-        <div className="pt-12 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto text-left">
-          <div className="p-4 rounded-2xl bg-white/10 border border-white/15 backdrop-blur-md flex items-start gap-3">
-            <div className="w-9 h-9 rounded-xl bg-white/15 flex items-center justify-center text-emerald-200 shrink-0">
+        <div className="pt-10 sm:pt-12 grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto text-left">
+          <div className="p-4 sm:p-4.5 rounded-2xl bg-white/10 border border-white/15 backdrop-blur-md flex items-start gap-3.5">
+            <div className="w-10 h-10 rounded-full bg-white/15 border border-white/20 flex items-center justify-center text-emerald-200 shrink-0 mt-0.5">
               <ShieldCheck className="w-5 h-5" />
             </div>
             <div>
-              <h4 className="text-xs font-bold text-white">Certified Partner Network</h4>
-              <p className="text-[11px] text-emerald-100/70 mt-0.5">Audited 4x4 drivers, alpine miner guides & safety respirators.</p>
+              <h4 className="text-xs sm:text-sm font-bold text-white font-['Playfair_Display']">Certified Partner Network</h4>
+              <p className="text-[11px] sm:text-xs text-emerald-100/80 mt-1 leading-relaxed">
+                Audited 4x4 drivers, alpine miner guides &amp; safety respirators.
+              </p>
             </div>
           </div>
 
-          <div className="p-4 rounded-2xl bg-white/10 border border-white/15 backdrop-blur-md flex items-start gap-3">
-            <div className="w-9 h-9 rounded-xl bg-white/15 flex items-center justify-center text-emerald-200 shrink-0">
+          <div className="p-4 sm:p-4.5 rounded-2xl bg-white/10 border border-white/15 backdrop-blur-md flex items-start gap-3.5">
+            <div className="w-10 h-10 rounded-full bg-white/15 border border-white/20 flex items-center justify-center text-emerald-200 shrink-0 mt-0.5">
               <HeartHandshake className="w-5 h-5" />
             </div>
             <div>
-              <h4 className="text-xs font-bold text-white">100% Private Expeditions</h4>
-              <p className="text-[11px] text-emerald-100/70 mt-0.5">No mixed groups or rigid buses. Your timetable, vehicles, and pace.</p>
+              <h4 className="text-xs sm:text-sm font-bold text-white font-['Playfair_Display']">100% Private Expeditions</h4>
+              <p className="text-[11px] sm:text-xs text-emerald-100/80 mt-1 leading-relaxed">
+                No mixed groups or rigid buses. Your timetable, vehicles, and pace.
+              </p>
             </div>
           </div>
 
-          <div className="p-4 rounded-2xl bg-white/10 border border-white/15 backdrop-blur-md flex items-start gap-3">
-            <div className="w-9 h-9 rounded-xl bg-white/15 flex items-center justify-center text-emerald-200 shrink-0">
+          <div className="p-4 sm:p-4.5 rounded-2xl bg-white/10 border border-white/15 backdrop-blur-md flex items-start gap-3.5">
+            <div className="w-10 h-10 rounded-full bg-white/15 border border-white/20 flex items-center justify-center text-emerald-200 shrink-0 mt-0.5">
               <Sparkles className="w-5 h-5" />
             </div>
             <div>
-              <h4 className="text-xs font-bold text-white">Bespoke Quotations</h4>
-              <p className="text-[11px] text-emerald-100/70 mt-0.5">Transparent costing tailored to your exact group size, luxury tier & dates.</p>
+              <h4 className="text-xs sm:text-sm font-bold text-white font-['Playfair_Display']">Transparent &amp; Fair Pricing</h4>
+              <p className="text-[11px] sm:text-xs text-emerald-100/80 mt-1 leading-relaxed">
+                Tailored to your group size, travel dates, and exact preferences.
+              </p>
             </div>
           </div>
         </div>

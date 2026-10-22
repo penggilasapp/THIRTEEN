@@ -7,15 +7,17 @@ import {
   Lock, 
   Menu, 
   X,
-  Sparkles,
-  RefreshCw,
-  Search,
-  ChevronRight,
-  Check,
-  Download
+  Sparkles, 
+  RefreshCw, 
+  Search, 
+  ChevronRight, 
+  Check, 
+  Download,
+  ArrowRight
 } from 'lucide-react';
 import { DataExportModal } from './DataExportModal';
 import { PWAInstallButton } from './PWAInstallButton';
+import { AccommodationModal } from '../client/AccommodationModal';
 
 export const TopNavigation: React.FC = () => {
   const { 
@@ -36,6 +38,7 @@ export const TopNavigation: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [trackerModalOpen, setTrackerModalOpen] = useState(false);
   const [dataExportModalOpen, setDataExportModalOpen] = useState(false);
+  const [accommodationModalOpen, setAccommodationModalOpen] = useState(false);
   const [lookupRef, setLookupRef] = useState('');
   const [lookupError, setLookupError] = useState('');
 
@@ -56,6 +59,32 @@ export const TopNavigation: React.FC = () => {
       setLookupError(`Booking reference "${target}" not found. Try demo ref: TT-2026-081 or TT-2026-064`);
     }
   };
+
+  const handleSearchClick = () => {
+    if (clientPage !== 'home') {
+      setClientPage('home');
+      setTimeout(() => {
+        const el = document.getElementById('faq');
+        el?.scrollIntoView({ behavior: 'smooth' });
+        const input = el?.querySelector('input');
+        input?.focus();
+      }, 150);
+    } else {
+      const el = document.getElementById('faq');
+      el?.scrollIntoView({ behavior: 'smooth' });
+      const input = el?.querySelector('input');
+      input?.focus();
+    }
+  };
+
+  const navItems = [
+    { id: 'home', label: 'Home', action: () => setClientPage('home') },
+    { id: 'destinations', label: 'Destinations', action: () => setClientPage('destinations') },
+    { id: 'tours', label: 'Tours & Expeditions', action: () => setClientPage('tours') },
+    { id: 'experiences', label: 'Experiences', action: () => setClientPage('experiences') },
+    { id: 'accommodation', label: 'Accommodation', action: () => setAccommodationModalOpen(true) },
+    { id: 'travel-guide', label: 'Articles & Guides', action: () => setClientPage('travel-guide') },
+  ];
 
   return (
     <>
@@ -142,7 +171,7 @@ export const TopNavigation: React.FC = () => {
       {/* Main Brand Header */}
       {viewMode === 'client' && (
         <header className="bg-white/95 backdrop-blur-md border-b border-stone-200/80 text-stone-900 sticky top-0 z-40 transition-colors">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-2">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-3">
             {/* Logo */}
             <div 
               onClick={() => setClientPage('home')}
@@ -163,21 +192,13 @@ export const TopNavigation: React.FC = () => {
             </div>
 
             {/* Desktop Navigation Menu: Clean & Dedicated Pages (1024px+) */}
-            <nav className="hidden lg:flex items-center gap-1 xl:gap-2 text-xs font-semibold text-stone-600">
-              {[
-                { id: 'home', label: 'Home' },
-                { id: 'destinations', label: 'Destinations' },
-                { id: 'experiences', label: 'Experiences' },
-                { id: 'tours', label: 'Tours' },
-                { id: 'travel-guide', label: 'Travel Guide' },
-                { id: 'about-us', label: 'About Us' },
-                { id: 'contact', label: 'Contact' },
-              ].map((item) => (
+            <nav className="hidden xl:flex items-center gap-1 text-xs font-semibold text-stone-600">
+              {navItems.map((item) => (
                 <button
                   key={item.id}
-                  onClick={() => setClientPage(item.id as any)}
+                  onClick={item.action}
                   className={`px-3 py-2 rounded-xl transition-all cursor-pointer whitespace-nowrap ${
-                    clientPage === item.id
+                    (clientPage as string) === item.id && item.id !== 'accommodation'
                       ? 'bg-emerald-50 text-emerald-950 font-bold border border-emerald-200/90 shadow-2xs'
                       : 'hover:text-emerald-900 hover:bg-stone-100/80'
                   }`}
@@ -187,24 +208,57 @@ export const TopNavigation: React.FC = () => {
               ))}
             </nav>
 
-            {/* Actions */}
-            <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+            {/* Tablet Navigation (1024px - 1279px) */}
+            <nav className="hidden lg:flex xl:hidden items-center gap-1 text-xs font-semibold text-stone-600">
+              {[
+                { id: 'home', label: 'Home', action: () => setClientPage('home') },
+                { id: 'destinations', label: 'Destinations', action: () => setClientPage('destinations') },
+                { id: 'tours', label: 'Tours', action: () => setClientPage('tours') },
+                { id: 'experiences', label: 'Experiences', action: () => setClientPage('experiences') },
+                { id: 'travel-guide', label: 'Guides', action: () => setClientPage('travel-guide') },
+              ].map((item) => (
+                <button
+                  key={item.id}
+                  onClick={item.action}
+                  className={`px-2.5 py-1.5 rounded-lg transition-all cursor-pointer whitespace-nowrap ${
+                    clientPage === item.id
+                      ? 'bg-emerald-50 text-emerald-950 font-bold'
+                      : 'hover:text-emerald-900 hover:bg-stone-100'
+                  }`}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </nav>
+
+            {/* Actions: Search, Track Itinerary, Plan Your Journey CTA */}
+            <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
+              {/* Search trigger icon */}
+              <button
+                onClick={handleSearchClick}
+                title="Search questions, destinations, and logistics"
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl hover:bg-stone-100 flex items-center justify-center text-stone-600 hover:text-stone-900 transition-colors cursor-pointer"
+                aria-label="Search"
+              >
+                <Search className="w-4 h-4" />
+              </button>
+
               {/* Client Itinerary Portal Button */}
               <button
                 onClick={() => setTrackerModalOpen(true)}
-                className="hidden md:inline-flex items-center gap-1.5 text-xs font-semibold px-3.5 py-2 rounded-xl bg-stone-100 text-stone-700 hover:bg-stone-200/80 transition-colors cursor-pointer min-h-[40px]"
+                className="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold px-3.5 py-2 rounded-xl bg-stone-100 text-stone-700 hover:bg-stone-200/80 border border-stone-200 transition-colors cursor-pointer min-h-[40px]"
               >
                 <FileText className="w-3.5 h-3.5 text-emerald-800" />
                 <span>Track Itinerary</span>
               </button>
 
-              {/* Primary CTA: PLAN YOUR JOURNEY */}
+              {/* Primary CTA: PLAN YOUR JOURNEY → */}
               <button
                 onClick={() => openInquireForPackage()}
-                className="inline-flex items-center gap-1.5 text-xs font-bold px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl bg-[#0F2922] text-white hover:bg-[#153A30] shadow-sm transition-all cursor-pointer uppercase tracking-wider min-h-[40px] sm:min-h-[44px]"
+                className="inline-flex items-center gap-1.5 text-xs font-bold px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl bg-[#0F2922] text-white hover:bg-[#153A30] shadow-sm transition-all cursor-pointer uppercase tracking-wider min-h-[40px] sm:min-h-[44px]"
               >
-                <Sparkles className="w-3.5 h-3.5 text-emerald-300" />
-                <span>Plan<span className="hidden sm:inline"> Your Journey</span></span>
+                <span className="whitespace-nowrap">Plan<span className="hidden sm:inline"> Your Journey</span></span>
+                <ArrowRight className="w-3.5 h-3.5 text-emerald-300" />
               </button>
 
               {/* Mobile menu toggle */}
@@ -221,19 +275,11 @@ export const TopNavigation: React.FC = () => {
           {/* Mobile drop menu */}
           {mobileMenuOpen && (
             <div className="lg:hidden bg-white border-b border-stone-200 px-4 pt-3 pb-6 space-y-1.5 shadow-xl max-h-[calc(100vh-5rem)] overflow-y-auto">
-              {[
-                { id: 'home', label: 'Home' },
-                { id: 'destinations', label: 'Destinations' },
-                { id: 'experiences', label: 'Experiences' },
-                { id: 'tours', label: 'Tours' },
-                { id: 'travel-guide', label: 'Travel Guide' },
-                { id: 'about-us', label: 'About Us' },
-                { id: 'contact', label: 'Contact' },
-              ].map((item) => (
+              {navItems.map((item) => (
                 <button
                   key={item.id}
                   onClick={() => {
-                    setClientPage(item.id as any);
+                    item.action();
                     setMobileMenuOpen(false);
                   }}
                   className={`w-full text-left px-4 py-3 rounded-xl text-xs font-semibold transition-all flex items-center justify-between min-h-[44px] ${
@@ -256,8 +302,8 @@ export const TopNavigation: React.FC = () => {
                   }}
                   className="w-full flex items-center justify-center gap-2 text-xs font-bold py-3.5 rounded-xl bg-[#0F2922] text-white uppercase tracking-wider min-h-[44px] shadow-sm"
                 >
-                  <Sparkles className="w-3.5 h-3.5 text-emerald-300" />
                   <span>Plan Your Journey</span>
+                  <ArrowRight className="w-3.5 h-3.5 text-emerald-300" />
                 </button>
                 <button
                   onClick={() => {
@@ -274,6 +320,12 @@ export const TopNavigation: React.FC = () => {
           )}
         </header>
       )}
+
+      {/* Accommodation Modal */}
+      <AccommodationModal
+        isOpen={accommodationModalOpen}
+        onClose={() => setAccommodationModalOpen(false)}
+      />
 
       {/* Booking Tracker / Client Voucher Lookup Modal */}
       {trackerModalOpen && (
