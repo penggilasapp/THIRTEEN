@@ -48,7 +48,7 @@ export const TravelGuideSection: React.FC = () => {
               <button
                 key={tag}
                 onClick={() => setSelectedTag(tag)}
-                className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                className={`px-4 py-2 min-h-[40px] rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center justify-center ${
                   selectedTag === tag
                     ? 'bg-[#0F2922] text-white shadow-xs'
                     : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
@@ -131,7 +131,7 @@ export const TravelGuideSection: React.FC = () => {
               <div className="p-6 pt-0">
                 <button
                   onClick={() => setReadingArticle(article)}
-                  className="w-full py-2.5 px-4 rounded-xl bg-white hover:bg-stone-100 text-emerald-950 border border-stone-200 text-xs font-bold transition-all flex items-center justify-center gap-2 shadow-2xs group-hover:bg-[#0F2922] group-hover:text-white group-hover:border-[#0F2922] cursor-pointer"
+                  className="w-full py-2.5 px-4 min-h-[44px] rounded-xl bg-white hover:bg-stone-100 text-emerald-950 border border-stone-200 text-xs font-bold transition-all flex items-center justify-center gap-2 shadow-2xs group-hover:bg-[#0F2922] group-hover:text-white group-hover:border-[#0F2922] cursor-pointer"
                 >
                   <span>Read Complete Guide</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -182,7 +182,8 @@ export const TravelGuideSection: React.FC = () => {
 
               <button
                 onClick={() => setReadingArticle(null)}
-                className="absolute top-4 right-4 p-2 rounded-full bg-white/80 hover:bg-white text-stone-900 backdrop-blur-md transition-all shadow-md cursor-pointer"
+                className="absolute top-4 right-4 p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full bg-white/80 hover:bg-white text-stone-900 backdrop-blur-md transition-all shadow-md cursor-pointer"
+                aria-label="Close article"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -203,7 +204,7 @@ export const TravelGuideSection: React.FC = () => {
             </div>
 
             {/* Scrollable Article Body */}
-            <div className="p-6 sm:p-8 overflow-y-auto space-y-6 text-stone-700 leading-relaxed text-xs sm:text-sm">
+            <div className="p-4 sm:p-8 overflow-y-auto space-y-6 text-stone-700 leading-relaxed text-xs sm:text-sm">
               {/* Author bio */}
               <div className="flex items-center gap-3 p-4 rounded-2xl bg-stone-50 border border-stone-200">
                 <div className="w-10 h-10 rounded-full bg-emerald-800 text-white flex items-center justify-center font-bold text-sm shrink-0">
@@ -242,13 +243,13 @@ export const TravelGuideSection: React.FC = () => {
             </div>
 
             {/* Modal Footer */}
-            <div className="px-6 py-4 bg-[#FAF9F6] border-t border-stone-200 flex items-center justify-between shrink-0">
-              <span className="text-xs text-stone-500">
+            <div className="px-4 sm:px-6 py-3.5 sm:py-4 bg-[#FAF9F6] border-t border-stone-200 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 shrink-0">
+              <span className="text-xs text-stone-500 text-center sm:text-left">
                 THIRTEEN Operator Tour Knowledge Base
               </span>
               <button
                 onClick={() => setReadingArticle(null)}
-                className="px-5 py-2 rounded-xl bg-[#0F2922] text-white text-xs font-bold hover:bg-[#153A30] transition-colors cursor-pointer"
+                className="w-full sm:w-auto px-5 py-2.5 min-h-[44px] rounded-xl bg-[#0F2922] text-white text-xs font-bold hover:bg-[#153A30] transition-colors cursor-pointer flex items-center justify-center text-center"
               >
                 Close Article
               </button>

@@ -285,13 +285,13 @@ export const DataExportModal: React.FC<DataExportModalProps> = ({ isOpen, onClos
 
       // Add instructions readme
       zip.file('README_DATA.txt', `THIRTEEN Operator Tour - Data Bundle
-Tanggal Ekspor: ${new Date().toLocaleString('id-ID')}
+Export Date: ${new Date().toUTCString()}
 
-Koleksi Berkas:
-1. data-json/ : Berisi seluruh berkas JSON terstruktur untuk database SQLite, PostgreSQL, MongoDB, atau Firebase.
-2. data-csv/  : Berisi berkas tabel CSV yang bisa langsung dibuka di Microsoft Excel atau Google Sheets.
+File Structure:
+1. data-json/ : Structured JSON datasets for PostgreSQL, SQLite, MongoDB, or Firebase.
+2. data-csv/  : Formatted CSV spreadsheets for Microsoft Excel or Google Sheets.
 
-Hubungi THIRTEEN Operator Tour untuk kustomisasi lebih lanjut.`);
+Contact THIRTEEN Operator Tour for custom bespoke integrations.`);
 
       const content = await zip.generateAsync({ type: 'blob' });
       const url = URL.createObjectURL(content);
@@ -304,7 +304,7 @@ Hubungi THIRTEEN Operator Tour untuk kustomisasi lebih lanjut.`);
       URL.revokeObjectURL(url);
     } catch (err) {
       console.error('Failed to create data zip:', err);
-      alert('Terjadi kesalahan saat membuat zip.');
+      alert('An error occurred while generating the ZIP bundle.');
     } finally {
       setIsZipping(false);
     }
@@ -345,7 +345,7 @@ Hubungi THIRTEEN Operator Tour untuk kustomisasi lebih lanjut.`);
   };
 
   const tabs: { id: DatasetTab; label: string; icon: React.ComponentType<{ className?: string }>; count?: number }[] = [
-    { id: 'zip-guide', label: '📦 Paket ZIP & Panduan', icon: FolderArchive },
+    { id: 'zip-guide', label: '📦 ZIP Bundle & Guide', icon: FolderArchive },
     { id: 'all', label: 'All Bundled JSON', icon: Database },
     { id: 'packages', label: 'Tour Packages', icon: Layers, count: packages.length },
     { id: 'bookings', label: 'CRM & Bookings', icon: FileSpreadsheet, count: bookings.length },
@@ -354,7 +354,7 @@ Hubungi THIRTEEN Operator Tour untuk kustomisasi lebih lanjut.`);
     { id: 'guides', label: 'Travel Guides', icon: BookOpen, count: TRAVEL_ARTICLES_DATA.length },
     { id: 'faqs', label: 'FAQs & Policies', icon: HelpCircle, count: FAQS_DATA.length },
     { id: 'partners', label: 'Partners', icon: ShieldCheck, count: partners.length },
-    { id: 'codemap', label: 'Struktur Source Code', icon: Code2 }
+    { id: 'codemap', label: 'Source Architecture', icon: Code2 }
   ];
 
   const hasCSV = ['packages', 'bookings', 'destinations'].includes(activeTab);
@@ -370,10 +370,10 @@ Hubungi THIRTEEN Operator Tour untuk kustomisasi lebih lanjut.`);
             </div>
             <div>
               <span className="text-[10px] uppercase font-bold tracking-wider text-emerald-800">
-                THIRTEEN Operator Tour • Pusat Unduh ZIP &amp; Data Sumber
+                THIRTEEN Operator Tour • Data &amp; Source Archive Hub
               </span>
               <h3 className="text-xl sm:text-2xl font-bold font-['Playfair_Display'] text-slate-900">
-                Unduh Seluruh Source Code &amp; Data (.ZIP)
+                Export Source Code &amp; Data (.ZIP)
               </h3>
             </div>
           </div>
@@ -392,15 +392,15 @@ Hubungi THIRTEEN Operator Tour untuk kustomisasi lebih lanjut.`);
             <div className="space-y-1 text-center md:text-left">
               <div className="flex items-center justify-center md:justify-start gap-2">
                 <span className="px-2 py-0.5 rounded-full bg-emerald-400/20 text-emerald-300 text-[10px] font-bold border border-emerald-400/30 uppercase tracking-wider">
-                  Siap Unduh Sekali Klik
+                  One-Click Export
                 </span>
-                <span className="text-xs text-emerald-200/70 hidden sm:inline">• Lengkap &amp; Bebas Error</span>
+                <span className="text-xs text-emerald-200/70 hidden sm:inline">• Production-Ready &amp; Verified</span>
               </div>
               <h4 className="font-bold text-white text-base">
-                Pilih Paket Arsip .ZIP yang Ingin Anda Unduh:
+                Select Archive Package to Download:
               </h4>
               <p className="text-emerald-100/70 text-xs">
-                Dapat langsung dibuka di komputer lokal Anda, diimpor ke Excel, atau dijalankan dengan Vite.
+                Open directly on your computer, import into spreadsheet tools, or run with Vite.
               </p>
             </div>
 
@@ -408,22 +408,22 @@ Hubungi THIRTEEN Operator Tour untuk kustomisasi lebih lanjut.`);
               {/* Option 1: Full Project Source Code ZIP */}
               <button
                 onClick={handleDownloadSourceCodeZip}
-                className="px-4 py-2.5 rounded-xl bg-white text-emerald-950 hover:bg-emerald-50 text-xs font-bold transition-all flex items-center gap-2 shadow-md hover:scale-102 active:scale-98 cursor-pointer"
-                title="Unduh seluruh project (React 19 + TypeScript + Tailwind 4 + Vite) siap jalan"
+                className="px-4 py-2.5 rounded-xl bg-white text-emerald-950 hover:bg-emerald-50 text-xs font-bold transition-all flex items-center gap-2 shadow-md hover:scale-102 active:scale-98 cursor-pointer min-h-[44px]"
+                title="Download full project (React 19 + TypeScript + Tailwind 4 + Vite) ready to run"
               >
                 <FolderArchive className="w-4 h-4 text-emerald-800" />
-                <span>Unduh Source Code (.ZIP)</span>
+                <span>Download Source Code (.ZIP)</span>
               </button>
 
               {/* Option 2: Data Bundle ZIP */}
               <button
                 onClick={handleDownloadDataBundleZip}
                 disabled={isZipping}
-                className="px-4 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-600 text-white border border-emerald-500/50 text-xs font-bold transition-all flex items-center gap-2 shadow-md hover:scale-102 active:scale-98 cursor-pointer disabled:opacity-50"
-                title="Unduh kumpulan berkas JSON & CSV lengkap"
+                className="px-4 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-600 text-white border border-emerald-500/50 text-xs font-bold transition-all flex items-center gap-2 shadow-md hover:scale-102 active:scale-98 cursor-pointer disabled:opacity-50 min-h-[44px]"
+                title="Download all JSON & CSV datasets"
               >
                 <Database className="w-4 h-4 text-emerald-200" />
-                <span>{isZipping ? 'Membuat ZIP...' : 'Unduh Data Bundle (.ZIP)'}</span>
+                <span>{isZipping ? 'Generating ZIP...' : 'Download Data Bundle (.ZIP)'}</span>
               </button>
             </div>
           </div>
@@ -463,7 +463,7 @@ Hubungi THIRTEEN Operator Tour untuk kustomisasi lebih lanjut.`);
           {activeTab === 'zip-guide' ? (
             /* ZIP Guide View */
             <div className="space-y-6">
-              {/* Card 1: Isi dari Source Code ZIP */}
+              {/* Card 1: Contents of Source Code ZIP */}
               <div className="p-5 rounded-2xl bg-white border border-stone-200 shadow-xs space-y-4">
                 <div className="flex items-center gap-3">
                   <div className="w-9 h-9 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-800">
@@ -471,56 +471,56 @@ Hubungi THIRTEEN Operator Tour untuk kustomisasi lebih lanjut.`);
                   </div>
                   <div>
                     <h4 className="font-bold text-slate-900 text-sm sm:text-base">
-                      1. Berkas Source Code Lengkap (thirteen-operator-tour-source.zip)
+                      1. Complete Source Code Archive (thirteen-operator-tour-source.zip)
                     </h4>
                     <p className="text-xs text-stone-500">
-                      Ukuran berkas ~140 KB (terkompresi murni tanpa folder node_modules sampah).
+                      File size ~140 KB (clean compression excluding node_modules directory).
                     </p>
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-stone-700">
                   <div className="p-3 rounded-xl bg-stone-50 border border-stone-200/80 space-y-1">
-                    <span className="font-bold text-emerald-950 block">Frontend &amp; UI Components</span>
+                    <span className="font-bold text-emerald-950 block">Frontend &amp; UI Architecture</span>
                     <p className="text-stone-500 text-[11px]">
-                      Seluruh halaman (Home, Destinations, Experiences, Tours, FAQ, About Us, Contact) dan komponen CRM Admin.
+                      All client pages (Home, Destinations, Experiences, Tours, FAQ, About Us, Contact) and CRM Admin operations console.
                     </p>
                   </div>
                   <div className="p-3 rounded-xl bg-stone-50 border border-stone-200/80 space-y-1">
-                    <span className="font-bold text-emerald-950 block">Data Sumber Lengkap</span>
+                    <span className="font-bold text-emerald-950 block">Complete Source Datasets</span>
                     <p className="text-stone-500 text-[11px]">
-                      Folder <code className="text-emerald-800 font-semibold">src/data/</code> lengkap dengan paket tur overland, harga USD/IDR, kebijakan refund, dan FAQ.
+                      The <code className="text-emerald-800 font-semibold">src/data/</code> directory containing overland itineraries, quotation matrices, cancellation policies, and FAQs.
                     </p>
                   </div>
                   <div className="p-3 rounded-xl bg-stone-50 border border-stone-200/80 space-y-1">
-                    <span className="font-bold text-emerald-950 block">Konfigurasi Siap Jalankan</span>
+                    <span className="font-bold text-emerald-950 block">Build &amp; Run Configurations</span>
                     <p className="text-stone-500 text-[11px]">
-                      Telah menyertakan <code className="text-emerald-800 font-semibold">package.json</code>, <code className="text-emerald-800 font-semibold">vite.config.ts</code>, dan <code className="text-emerald-800 font-semibold">tsconfig.json</code>.
+                      Preconfigured <code className="text-emerald-800 font-semibold">package.json</code>, <code className="text-emerald-800 font-semibold">vite.config.ts</code>, and <code className="text-emerald-800 font-semibold">tsconfig.json</code>.
                     </p>
                   </div>
                   <div className="p-3 rounded-xl bg-stone-50 border border-stone-200/80 space-y-1">
-                    <span className="font-bold text-emerald-950 block">Petunjuk README.md</span>
+                    <span className="font-bold text-emerald-950 block">Developer Documentation</span>
                     <p className="text-stone-500 text-[11px]">
-                      Panduan berbahasa Indonesia untuk instalasi dan deploy mandiri.
+                      Self-contained instructions for local setup, development commands, and production build.
                     </p>
                   </div>
                 </div>
 
                 <div className="pt-2 flex items-center justify-between border-t border-stone-100 flex-wrap gap-2">
                   <span className="text-xs text-stone-500">
-                    Klik tombol di bawah untuk langsung mengunduh:
+                    Click the button below to download the package archive:
                   </span>
                   <button
                     onClick={handleDownloadSourceCodeZip}
-                    className="px-4 py-2 rounded-xl bg-[#0F2922] hover:bg-[#16382E] text-white text-xs font-bold flex items-center gap-2 cursor-pointer shadow-xs"
+                    className="px-4 py-2.5 min-h-[44px] rounded-xl bg-[#0F2922] hover:bg-[#16382E] text-white text-xs font-bold flex items-center gap-2 cursor-pointer shadow-xs"
                   >
                     <Download className="w-4 h-4 text-emerald-400" />
-                    <span>Download Project ZIP Sekarang</span>
+                    <span>Download Project ZIP</span>
                   </button>
                 </div>
               </div>
 
-              {/* Card 2: Cara Menjalankan di Komputer Lokal */}
+              {/* Card 2: How to Run Locally */}
               <div className="p-5 rounded-2xl bg-white border border-stone-200 shadow-xs space-y-4">
                 <div className="flex items-center gap-3">
                   <div className="w-9 h-9 rounded-xl bg-stone-100 border border-stone-200 flex items-center justify-center text-slate-700">
@@ -528,10 +528,10 @@ Hubungi THIRTEEN Operator Tour untuk kustomisasi lebih lanjut.`);
                   </div>
                   <div>
                     <h4 className="font-bold text-slate-900 text-sm sm:text-base">
-                      2. Cara Menjalankan di Komputer Anda (3 Langkah Mudah)
+                      2. How to Run Locally (3 Simple Steps)
                     </h4>
                     <p className="text-xs text-stone-500">
-                      Jalankan di Visual Studio Code, Terminal macOS/Linux, atau Command Prompt Windows.
+                      Run in Visual Studio Code, macOS/Linux Terminal, or Windows Command Prompt / PowerShell.
                     </p>
                   </div>
                 </div>
@@ -540,17 +540,17 @@ Hubungi THIRTEEN Operator Tour untuk kustomisasi lebih lanjut.`);
                   <div className="space-y-1">
                     <div className="flex items-center gap-2 text-xs font-bold text-slate-800">
                       <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-900 flex items-center justify-center text-[10px]">1</span>
-                      <span>Ekstrak berkas ZIP</span>
+                      <span>Extract the ZIP Archive</span>
                     </div>
                     <p className="text-[11px] text-stone-500 pl-7">
-                      Klik kanan pada file <code className="text-emerald-900 font-semibold bg-stone-100 px-1 py-0.5 rounded">thirteen-operator-tour-source.zip</code> lalu pilih "Extract All".
+                      Right click <code className="text-emerald-900 font-semibold bg-stone-100 px-1 py-0.5 rounded">thirteen-operator-tour-source.zip</code> and select "Extract All".
                     </p>
                   </div>
 
                   <div className="space-y-1">
                     <div className="flex items-center gap-2 text-xs font-bold text-slate-800">
                       <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-900 flex items-center justify-center text-[10px]">2</span>
-                      <span>Buka terminal di folder tersebut lalu instal modul:</span>
+                      <span>Open a terminal in the folder and install dependencies:</span>
                     </div>
                     <div className="pl-7">
                       <div className="bg-[#091A14] text-emerald-300 font-mono text-xs px-4 py-2.5 rounded-xl border border-emerald-950 select-all">
@@ -562,14 +562,14 @@ Hubungi THIRTEEN Operator Tour untuk kustomisasi lebih lanjut.`);
                   <div className="space-y-1">
                     <div className="flex items-center gap-2 text-xs font-bold text-slate-800">
                       <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-900 flex items-center justify-center text-[10px]">3</span>
-                      <span>Jalankan server aplikasi:</span>
+                      <span>Start the development server:</span>
                     </div>
                     <div className="pl-7">
                       <div className="bg-[#091A14] text-emerald-300 font-mono text-xs px-4 py-2.5 rounded-xl border border-emerald-950 select-all">
                         npm run dev
                       </div>
                       <p className="text-[11px] text-stone-500 mt-1">
-                        Aplikasi akan langsung terbuka di browser Anda pada alamat <code className="text-emerald-900 font-semibold">http://localhost:3000</code>.
+                        The app will be available in your browser at <code className="text-emerald-900 font-semibold">http://localhost:3000</code>.
                       </p>
                     </div>
                   </div>
@@ -581,34 +581,34 @@ Hubungi THIRTEEN Operator Tour untuk kustomisasi lebih lanjut.`);
             <div className="space-y-4">
               <div className="flex flex-wrap items-center justify-between gap-3 text-xs text-stone-600">
                 <span className="font-mono text-[11px] text-stone-500">
-                  Format: <strong>JSON (UTF-8)</strong> • Ukuran: <strong>{formattedSize}</strong> • Baris: <strong>{jsonString.split('\n').length}</strong>
+                  Format: <strong>JSON (UTF-8)</strong> • Size: <strong>{formattedSize}</strong> • Lines: <strong>{jsonString.split('\n').length}</strong>
                 </span>
                 <div className="flex items-center gap-2 flex-wrap">
                   <button
                     onClick={handleCopy}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-stone-200 text-stone-700 hover:bg-stone-50 font-medium text-xs shadow-2xs transition-all cursor-pointer"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-stone-200 text-stone-700 hover:bg-stone-50 font-medium text-xs shadow-2xs transition-all cursor-pointer min-h-[36px]"
                   >
                     {copied ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5 text-stone-500" />}
-                    <span>{copied ? 'Tersalin!' : 'Salin JSON'}</span>
+                    <span>{copied ? 'Copied!' : 'Copy JSON'}</span>
                   </button>
 
                   {hasCSV && (
                     <button
                       onClick={handleDownloadCSV}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-900 hover:bg-emerald-100 font-semibold text-xs shadow-2xs transition-all cursor-pointer"
-                      title="Ekspor format tabel untuk Excel atau Google Sheets"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-900 hover:bg-emerald-100 font-semibold text-xs shadow-2xs transition-all cursor-pointer min-h-[36px]"
+                      title="Export tabular format for Excel or Google Sheets"
                     >
                       <FileSpreadsheet className="w-3.5 h-3.5 text-emerald-700" />
-                      <span>Unduh .CSV</span>
+                      <span>Download .CSV</span>
                     </button>
                   )}
 
                   <button
                     onClick={handleDownloadJSON}
-                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-emerald-800 hover:bg-emerald-900 text-white font-bold text-xs shadow-2xs transition-all cursor-pointer"
+                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-emerald-800 hover:bg-emerald-900 text-white font-bold text-xs shadow-2xs transition-all cursor-pointer min-h-[36px]"
                   >
                     <Download className="w-3.5 h-3.5" />
-                    <span>Unduh .JSON</span>
+                    <span>Download .JSON</span>
                   </button>
                 </div>
               </div>
@@ -624,24 +624,24 @@ Hubungi THIRTEEN Operator Tour untuk kustomisasi lebih lanjut.`);
               <div className="p-4 rounded-2xl bg-white border border-stone-200 text-xs text-stone-600 space-y-2">
                 <h4 className="font-bold text-slate-900 flex items-center gap-1.5">
                   <Database className="w-3.5 h-3.5 text-emerald-800" />
-                  <span>Lokasi File Data Sumber (Source Files):</span>
+                  <span>Source Dataset File Architecture:</span>
                 </h4>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px] text-stone-600 pt-1">
                   <div className="p-2.5 rounded-xl bg-stone-50 border border-stone-200/70">
                     <span className="font-bold text-emerald-900 block">src/data/packagesData.ts</span>
-                    <span className="text-stone-500">Paket overland tour Bali, Bromo, Ijen, Yogyakarta, jadwal harian, harga, dan inklusi.</span>
+                    <span className="text-stone-500">Overland itineraries across Bali, Bromo, Ijen, Yogyakarta, day schedules, and inclusions.</span>
                   </div>
                   <div className="p-2.5 rounded-xl bg-stone-50 border border-stone-200/70">
                     <span className="font-bold text-emerald-900 block">src/data/policyData.ts</span>
-                    <span className="text-stone-500">FAQ pemesanan, syarat perjalanan, kebijakan refund &amp; pembatalan, kontak resmi.</span>
+                    <span className="text-stone-500">Booking procedures, travel requirements, refund &amp; cancellation policies, and contacts.</span>
                   </div>
                   <div className="p-2.5 rounded-xl bg-stone-50 border border-stone-200/70">
                     <span className="font-bold text-emerald-900 block">src/data/experienceData.ts</span>
-                    <span className="text-stone-500">Daftar pengalaman micro-curated (Sunrise Bromo, Blue Fire Ijen, Kopi Banyuwangi).</span>
+                    <span className="text-stone-500">Curated micro-experiences (Bromo Sunrise, Ijen Blue Fire, Banyuwangi Coffee Culture).</span>
                   </div>
                   <div className="p-2.5 rounded-xl bg-stone-50 border border-stone-200/70">
                     <span className="font-bold text-emerald-900 block">src/data/guideData.ts</span>
-                    <span className="text-stone-500">Artikel panduan lapangan, tips aklimatisasi, dan SOP masker gas respirator.</span>
+                    <span className="text-stone-500">Field guides, acclimatization advice, and certified safety respirator protocols.</span>
                   </div>
                 </div>
               </div>
@@ -652,18 +652,18 @@ Hubungi THIRTEEN Operator Tour untuk kustomisasi lebih lanjut.`);
         {/* Modal Footer */}
         <div className="px-6 py-4 bg-white border-t border-stone-200 flex flex-col sm:flex-row items-center justify-between gap-3 shrink-0">
           <span className="text-xs text-stone-500 text-center sm:text-left">
-            Siap untuk dijalankan di lokal, diimpor ke spreadsheet, atau dideploy ke hosting sendiri.
+            Ready for local execution, spreadsheet import, or standalone hosting deployment.
           </span>
           <div className="flex items-center gap-2 w-full sm:w-auto">
             <button
               onClick={onClose}
-              className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-stone-100 hover:bg-stone-200 text-stone-700 text-xs font-semibold transition-colors cursor-pointer"
+              className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-stone-100 hover:bg-stone-200 text-stone-700 text-xs font-semibold transition-colors cursor-pointer min-h-[44px] flex items-center justify-center text-center"
             >
-              Tutup
+              Close
             </button>
             <button
               onClick={handleDownloadSourceCodeZip}
-              className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-[#0F2922] hover:bg-[#153A30] text-white text-xs font-bold transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-sm"
+              className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-[#0F2922] hover:bg-[#153A30] text-white text-xs font-bold transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-sm min-h-[44px] text-center"
             >
               <FolderArchive className="w-3.5 h-3.5 text-emerald-400" />
               <span>Download Project ZIP</span>

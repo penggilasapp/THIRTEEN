@@ -623,12 +623,12 @@ export const InquireModal: React.FC = () => {
 
         {/* Footer actions */}
         {!submittedRef && (
-          <div className="px-6 py-4 bg-[#FAF9F6] border-t border-stone-200 flex items-center justify-between shrink-0">
+          <div className="px-4 sm:px-6 py-4 bg-[#FAF9F6] border-t border-stone-200 flex items-center justify-between shrink-0">
             {step > 1 ? (
               <button
                 type="button"
                 onClick={() => setStep((step - 1) as any)}
-                className="px-4 py-2 rounded-xl bg-stone-100 text-stone-700 hover:bg-stone-200 text-xs font-semibold flex items-center gap-1.5 transition-colors"
+                className="px-4 py-2.5 rounded-xl bg-stone-100 text-stone-700 hover:bg-stone-200 text-xs font-semibold flex items-center gap-1.5 transition-colors min-h-[44px] cursor-pointer"
               >
                 <ArrowLeft className="w-3.5 h-3.5" />
                 <span>Back</span>
@@ -641,7 +641,7 @@ export const InquireModal: React.FC = () => {
               <button
                 type="button"
                 onClick={handleNext}
-                className="px-5 py-2.5 rounded-xl bg-[#0F2922] hover:bg-[#153A30] text-white text-xs font-bold flex items-center gap-1.5 transition-all shadow-sm"
+                className="px-5 py-2.5 rounded-xl bg-[#0F2922] hover:bg-[#153A30] text-white text-xs font-bold flex items-center gap-1.5 transition-all shadow-sm min-h-[44px] cursor-pointer"
               >
                 <span>Continue</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -650,7 +650,7 @@ export const InquireModal: React.FC = () => {
               <button
                 type="button"
                 onClick={handleSubmit}
-                className="px-6 py-2.5 rounded-xl bg-[#0F2922] hover:bg-[#153A30] text-white text-xs font-bold flex items-center gap-2 transition-all shadow-md"
+                className="px-6 py-2.5 rounded-xl bg-[#0F2922] hover:bg-[#153A30] text-white text-xs font-bold flex items-center gap-2 transition-all shadow-md min-h-[44px] cursor-pointer"
               >
                 <Sparkles className="w-4 h-4 text-emerald-300" />
                 <span>Submit Bespoke Inquiry</span>

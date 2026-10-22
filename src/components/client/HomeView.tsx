@@ -104,27 +104,27 @@ export const HomeView: React.FC = () => {
             </div>
 
             {/* Region Switcher Tabs */}
-            <div className="inline-flex p-1.5 rounded-2xl bg-white border border-stone-200 shadow-2xs self-start md:self-center">
+            <div className="w-full sm:w-auto flex p-1.5 rounded-2xl bg-white border border-stone-200 shadow-2xs self-start md:self-center">
               <button
                 onClick={() => setActiveRegionTab('bali')}
-                className={`px-5 py-2.5 rounded-xl text-xs font-bold flex items-center gap-2 transition-all cursor-pointer ${
+                className={`flex-1 sm:flex-initial justify-center px-3.5 sm:px-5 py-2.5 rounded-xl text-xs font-bold flex items-center gap-1.5 sm:gap-2 transition-all cursor-pointer min-h-[44px] ${
                   activeRegionTab === 'bali'
                     ? 'bg-[#0F2922] text-white shadow-xs'
                     : 'text-stone-600 hover:text-stone-900'
                 }`}
               >
-                <Palmtree className="w-3.5 h-3.5" />
+                <Palmtree className="w-3.5 h-3.5 shrink-0" />
                 <span>Explore Bali ({baliDestinations.length})</span>
               </button>
               <button
                 onClick={() => setActiveRegionTab('java')}
-                className={`px-5 py-2.5 rounded-xl text-xs font-bold flex items-center gap-2 transition-all cursor-pointer ${
+                className={`flex-1 sm:flex-initial justify-center px-3.5 sm:px-5 py-2.5 rounded-xl text-xs font-bold flex items-center gap-1.5 sm:gap-2 transition-all cursor-pointer min-h-[44px] ${
                   activeRegionTab === 'java'
                     ? 'bg-[#0F2922] text-white shadow-xs'
                     : 'text-stone-600 hover:text-stone-900'
                 }`}
               >
-                <Mountain className="w-3.5 h-3.5" />
+                <Mountain className="w-3.5 h-3.5 shrink-0" />
                 <span>Explore Java ({javaDestinations.length})</span>
               </button>
             </div>
@@ -190,7 +190,7 @@ export const HomeView: React.FC = () => {
           </div>
 
           {/* Regional Footer CTA */}
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-6 rounded-2xl bg-white border border-stone-200">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-5 sm:p-6 rounded-2xl bg-white border border-stone-200">
             <div>
               <h4 className="text-sm font-bold text-slate-900">
                 Want to combine {activeRegionTab === 'bali' ? 'Bali' : 'Java'} with other destinations?
@@ -201,7 +201,7 @@ export const HomeView: React.FC = () => {
             </div>
             <button
               onClick={() => openInquireForPackage(undefined, activeRegionTab === 'bali' ? 'dest-bali' : 'dest-bromo')}
-              className="px-5 py-2.5 rounded-xl bg-[#0F2922] hover:bg-[#153A30] text-white text-xs font-bold whitespace-nowrap transition-all cursor-pointer shadow-xs"
+              className="w-full sm:w-auto px-5 py-3 rounded-xl bg-[#0F2922] hover:bg-[#153A30] text-white text-xs font-bold whitespace-nowrap transition-all cursor-pointer shadow-xs min-h-[44px] flex items-center justify-center text-center"
             >
               Request Custom Route Quote
             </button>
@@ -228,14 +228,14 @@ export const HomeView: React.FC = () => {
 
             <button
               onClick={() => setClientPage('experiences')}
-              className="inline-flex items-center gap-2 text-xs font-bold text-emerald-900 hover:text-emerald-950 bg-stone-50 hover:bg-stone-100 px-5 py-3 rounded-xl border border-stone-200 transition-all cursor-pointer self-start sm:self-center"
+              className="inline-flex items-center gap-2 text-xs font-bold text-emerald-900 hover:text-emerald-950 bg-stone-50 hover:bg-stone-100 px-5 py-3 rounded-xl border border-stone-200 transition-all cursor-pointer self-start sm:self-center min-h-[44px]"
             >
               <span>View All Experiences</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {featuredExperiences.map((exp) => (
               <div
                 key={exp.id}
@@ -380,13 +380,13 @@ export const HomeView: React.FC = () => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
             <button
               onClick={() => openInquireForPackage()}
-              className="w-full sm:w-auto px-8 py-4 rounded-xl bg-white text-emerald-950 hover:bg-emerald-50 text-xs font-bold uppercase tracking-wider transition-all shadow-xl cursor-pointer"
+              className="w-full sm:w-auto px-8 py-4 min-h-[48px] rounded-xl bg-white text-emerald-950 hover:bg-emerald-50 text-xs font-bold uppercase tracking-wider transition-all shadow-xl cursor-pointer flex items-center justify-center"
             >
               Request a Personalized Quote
             </button>
             <button
               onClick={() => setClientPage('tours')}
-              className="w-full sm:w-auto px-7 py-4 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold uppercase tracking-wider border border-white/20 transition-all cursor-pointer"
+              className="w-full sm:w-auto px-7 py-4 min-h-[48px] rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold uppercase tracking-wider border border-white/20 transition-all cursor-pointer flex items-center justify-center"
             >
               Explore Our Tours
             </button>

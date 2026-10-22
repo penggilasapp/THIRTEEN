@@ -170,7 +170,7 @@ export const AboutUsSection: React.FC = () => {
             </div>
             <button
               onClick={() => openInquireForPackage()}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#0F2922] text-white text-xs font-bold hover:bg-[#153A30] transition-colors self-start sm:self-center cursor-pointer"
+              className="inline-flex items-center justify-center gap-2 px-5 py-2.5 min-h-[44px] rounded-xl bg-[#0F2922] text-white text-xs font-bold hover:bg-[#153A30] transition-colors self-start sm:self-center cursor-pointer"
             >
               <span>Consult Travel Designer</span>
               <ArrowRight className="w-3.5 h-3.5" />

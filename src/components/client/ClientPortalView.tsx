@@ -109,7 +109,7 @@ export const ClientPortalView: React.FC = () => {
         </div>
 
         {/* Booking Summary Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 py-6 border-b border-stone-200 text-xs">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 py-6 border-b border-stone-200 text-xs">
           <div className="p-3.5 rounded-2xl bg-white border border-stone-200/90 shadow-xs">
             <span className="text-stone-400 text-[11px] uppercase font-semibold block">Primary Guest</span>
             <span className="text-stone-900 font-bold text-sm mt-0.5 block">{booking.customer.name}</span>

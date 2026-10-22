@@ -92,7 +92,7 @@ export const ContactSection: React.FC = () => {
                   href={`https://wa.me/6281234567890?text=${encodeURIComponent('Hello THIRTEEN Concierge, I would like to consult on a private Indonesian expedition.')}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-emerald-950 font-bold text-xs transition-colors shadow-sm"
+                  className="inline-flex items-center justify-center gap-2 px-4 py-3 min-h-[44px] rounded-xl bg-emerald-500 hover:bg-emerald-400 text-emerald-950 font-bold text-xs transition-colors shadow-sm"
                 >
                   <Phone className="w-4 h-4" />
                   <span>24/7 Priority WhatsApp</span>
@@ -101,7 +101,7 @@ export const ContactSection: React.FC = () => {
 
                 <a
                   href={`mailto:${CONTACT_INFO_DATA.reservationEmail}`}
-                  className="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold text-xs border border-white/20 transition-colors"
+                  className="inline-flex items-center justify-center gap-2 px-4 py-3 min-h-[44px] rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold text-xs border border-white/20 transition-colors"
                 >
                   <Mail className="w-4 h-4 text-emerald-300" />
                   <span>Email Reservations</span>
@@ -203,7 +203,7 @@ export const ContactSection: React.FC = () => {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder="e.g. Jessica Sterling"
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 text-xs focus:outline-none focus:ring-2 focus:ring-emerald-700 bg-stone-50"
+                      className="w-full px-3.5 py-2.5 min-h-[44px] rounded-xl border border-stone-200 text-base sm:text-xs focus:outline-none focus:ring-2 focus:ring-emerald-700 bg-stone-50"
                     />
                   </div>
 
@@ -217,7 +217,7 @@ export const ContactSection: React.FC = () => {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="jessica@example.com"
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 text-xs focus:outline-none focus:ring-2 focus:ring-emerald-700 bg-stone-50"
+                      className="w-full px-3.5 py-2.5 min-h-[44px] rounded-xl border border-stone-200 text-base sm:text-xs focus:outline-none focus:ring-2 focus:ring-emerald-700 bg-stone-50"
                     />
                   </div>
                 </div>
@@ -232,7 +232,7 @@ export const ContactSection: React.FC = () => {
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                       placeholder="+44 7123 456789"
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 text-xs focus:outline-none focus:ring-2 focus:ring-emerald-700 bg-stone-50"
+                      className="w-full px-3.5 py-2.5 min-h-[44px] rounded-xl border border-stone-200 text-base sm:text-xs focus:outline-none focus:ring-2 focus:ring-emerald-700 bg-stone-50"
                     />
                   </div>
 
@@ -243,7 +243,7 @@ export const ContactSection: React.FC = () => {
                     <select
                       value={destination}
                       onChange={(e) => setDestination(e.target.value)}
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 text-xs focus:outline-none focus:ring-2 focus:ring-emerald-700 bg-stone-50"
+                      className="w-full px-3.5 py-2.5 min-h-[44px] rounded-xl border border-stone-200 text-base sm:text-xs focus:outline-none focus:ring-2 focus:ring-emerald-700 bg-stone-50"
                     >
                       <option value="dest-bromo">Mount Bromo (Caldera Sunrise &amp; Sea of Sand)</option>
                       <option value="dest-ijen">Mount Ijen (Blue Fire &amp; Acidic Lake)</option>
@@ -263,20 +263,20 @@ export const ContactSection: React.FC = () => {
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     placeholder="Share your ideal travel window, estimated party size, dietary preferences, or specific physical preparation questions..."
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 text-xs focus:outline-none focus:ring-2 focus:ring-emerald-700 bg-stone-50 leading-relaxed"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 text-base sm:text-xs focus:outline-none focus:ring-2 focus:ring-emerald-700 bg-stone-50 leading-relaxed"
                   />
                 </div>
 
-                <div className="pt-2 flex items-center justify-between flex-wrap gap-3">
+                <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
                   <div className="flex items-center gap-1.5 text-[11px] text-stone-500">
-                    <ShieldCheck className="w-4 h-4 text-emerald-700" />
+                    <ShieldCheck className="w-4 h-4 text-emerald-700 shrink-0" />
                     <span>Your private information is encrypted &amp; never shared</span>
                   </div>
 
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="px-6 py-3 rounded-xl bg-[#0F2922] hover:bg-[#153A30] text-white text-xs font-bold transition-all flex items-center gap-2 shadow-sm cursor-pointer disabled:opacity-50"
+                    className="w-full sm:w-auto px-6 py-3 min-h-[44px] rounded-xl bg-[#0F2922] hover:bg-[#153A30] text-white text-xs font-bold transition-all flex items-center justify-center gap-2 shadow-sm cursor-pointer disabled:opacity-50 text-center"
                   >
                     {isSubmitting ? (
                       <span>Sending Inquiry...</span>

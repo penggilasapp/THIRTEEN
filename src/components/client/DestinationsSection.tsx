@@ -133,10 +133,10 @@ export const DestinationsSection: React.FC = () => {
                 {activeDestination.tagline || activeDestination.shortDescription}
               </p>
 
-              <div className="pt-2 flex flex-wrap items-center gap-3">
+              <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
                 <button
                   onClick={() => openInquireForPackage(undefined, activeDestination.id)}
-                  className="px-6 py-3 rounded-xl bg-[#0F2922] hover:bg-[#153A30] text-white font-bold text-xs shadow-md flex items-center gap-2 transition-all cursor-pointer uppercase tracking-wider"
+                  className="w-full sm:w-auto px-6 py-3.5 min-h-[44px] rounded-xl bg-[#0F2922] hover:bg-[#153A30] text-white font-bold text-xs shadow-md flex items-center justify-center gap-2 transition-all cursor-pointer uppercase tracking-wider text-center"
                 >
                   <Sparkles className="w-4 h-4 text-emerald-300" />
                   <span>Plan Your Journey to {activeDestination.name}</span>
@@ -144,7 +144,7 @@ export const DestinationsSection: React.FC = () => {
 
                 <button
                   onClick={() => navigateToDestinationRoute(activeRegion.slug as any, null)}
-                  className="px-4 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white border border-white/20 font-semibold text-xs backdrop-blur-md transition-all cursor-pointer"
+                  className="w-full sm:w-auto px-4 py-3.5 min-h-[44px] rounded-xl bg-white/10 hover:bg-white/20 text-white border border-white/20 font-semibold text-xs backdrop-blur-md transition-all cursor-pointer flex items-center justify-center text-center"
                 >
                   <span>Explore Other {activeRegion.name} Destinations</span>
                 </button>
@@ -414,7 +414,7 @@ export const DestinationsSection: React.FC = () => {
               <div className="pt-2 flex items-center gap-3">
                 <button
                   onClick={() => openInquireForPackage(undefined, activeRegion.id === 'bali' ? 'dest-bali' : 'dest-bromo')}
-                  className="px-5 py-2.5 rounded-xl bg-[#0F2922] hover:bg-[#153A30] text-white font-bold text-xs shadow-md flex items-center gap-2 transition-all cursor-pointer uppercase tracking-wider"
+                  className="w-full sm:w-auto px-5 py-3 min-h-[44px] rounded-xl bg-[#0F2922] hover:bg-[#153A30] text-white font-bold text-xs shadow-md flex items-center justify-center gap-2 transition-all cursor-pointer uppercase tracking-wider text-center"
                 >
                   <Sparkles className="w-3.5 h-3.5 text-emerald-300" />
                   <span>Plan a {activeRegion.name} Journey</span>
@@ -499,10 +499,10 @@ export const DestinationsSection: React.FC = () => {
                 </div>
 
                 {/* Card Actions */}
-                <div className="p-6 pt-0 flex items-center justify-between gap-3 border-t border-stone-100 mt-2">
+                <div className="p-6 pt-0 flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-t border-stone-100 mt-2">
                   <button
                     onClick={() => navigateToDestinationRoute(activeRegion.slug as any, dest.slug)}
-                    className="text-xs text-emerald-900 hover:text-emerald-950 font-bold flex items-center gap-1.5 transition-colors pt-3 cursor-pointer"
+                    className="text-xs text-emerald-900 hover:text-emerald-950 font-bold flex items-center gap-1.5 transition-colors pt-2 sm:pt-3 cursor-pointer min-h-[44px]"
                   >
                     <span>View Destination Dossier</span>
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -510,7 +510,7 @@ export const DestinationsSection: React.FC = () => {
 
                   <button
                     onClick={() => openInquireForPackage(undefined, dest.id)}
-                    className="mt-3 px-3.5 py-1.5 rounded-xl bg-emerald-50 hover:bg-[#0F2922] text-emerald-900 hover:text-white border border-emerald-200 text-xs font-bold transition-all cursor-pointer"
+                    className="sm:mt-3 px-4 py-2.5 rounded-xl bg-emerald-50 hover:bg-[#0F2922] text-emerald-900 hover:text-white border border-emerald-200 text-xs font-bold transition-all cursor-pointer min-h-[44px] flex items-center justify-center"
                   >
                     Plan Journey
                   </button>
@@ -658,8 +658,8 @@ export const DestinationsSection: React.FC = () => {
                 </div>
 
                 {/* Card Action Footer */}
-                <div className="p-6 sm:p-8 pt-0 flex items-center justify-between border-t border-stone-100 mt-2">
-                  <div className="text-xs font-bold text-emerald-900 group-hover:text-emerald-700 flex items-center gap-2 transition-colors pt-3">
+                <div className="p-6 sm:p-8 pt-0 flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-t border-stone-100 mt-2">
+                  <div className="text-xs font-bold text-emerald-900 group-hover:text-emerald-700 flex items-center gap-2 transition-colors pt-2 sm:pt-3 min-h-[44px]">
                     <span>Explore {reg.name} Regional Directory</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </div>
@@ -669,7 +669,7 @@ export const DestinationsSection: React.FC = () => {
                       e.stopPropagation();
                       navigateToDestinationRoute(reg.slug as any, null);
                     }}
-                    className="mt-3 px-4 py-2 rounded-xl bg-[#0F2922] hover:bg-[#153A30] text-white text-xs font-bold transition-all shadow-sm cursor-pointer"
+                    className="sm:mt-3 px-5 py-2.5 rounded-xl bg-[#0F2922] hover:bg-[#153A30] text-white text-xs font-bold transition-all shadow-sm cursor-pointer min-h-[44px] flex items-center justify-center"
                   >
                     View Destinations
                   </button>

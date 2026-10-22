@@ -68,7 +68,7 @@ export const ToursSection: React.FC = () => {
               <span>Expedition Format:</span>
             </div>
 
-            <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0">
+            <div className="flex items-center gap-1.5 overflow-x-auto pb-2 sm:pb-0 scrollbar-none">
               {[
                 { id: 'all', label: `All Formats (${packages.filter(p => p.active).length})` },
                 { id: 'fixed_package', label: 'Scheduled Packages' },
@@ -79,7 +79,7 @@ export const ToursSection: React.FC = () => {
                 <button
                   key={tab.id}
                   onClick={() => setSelectedTourType(tab.id as any)}
-                  className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${
+                  className={`px-3.5 py-2 min-h-[40px] sm:min-h-[36px] rounded-xl text-xs font-semibold whitespace-nowrap transition-all cursor-pointer flex items-center justify-center ${
                     selectedTourType === tab.id
                       ? 'bg-[#0F2922] text-white shadow-xs'
                       : 'bg-stone-100 text-stone-600 hover:bg-stone-200/70 hover:text-stone-900'
@@ -98,12 +98,12 @@ export const ToursSection: React.FC = () => {
               <span>Filter by Destination Region:</span>
             </div>
 
-            <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0">
+            <div className="flex items-center gap-1.5 overflow-x-auto pb-2 sm:pb-0 scrollbar-none">
               {destinationOptions.map((dest) => (
                 <button
                   key={dest.id}
                   onClick={() => setSelectedDestinationFilter(dest.id)}
-                  className={`px-3 py-1 rounded-lg text-xs font-medium whitespace-nowrap transition-all cursor-pointer ${
+                  className={`px-3.5 py-2 min-h-[38px] sm:min-h-[36px] rounded-lg text-xs font-medium whitespace-nowrap transition-all cursor-pointer flex items-center justify-center ${
                     selectedDestinationFilter === dest.id
                       ? 'bg-emerald-800 text-white font-bold'
                       : 'bg-stone-50 border border-stone-200 text-stone-600 hover:bg-stone-100'

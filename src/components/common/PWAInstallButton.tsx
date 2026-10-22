@@ -24,11 +24,11 @@ export const PWAInstallButton: React.FC<{ variant?: 'header' | 'floating' | 'ban
       <button
         onClick={handleInstallClick}
         className="px-2.5 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold flex items-center gap-1.5 transition-all shadow-xs cursor-pointer border border-emerald-400/40"
-        title="Pasang aplikasi THIRTEEN di layar beranda untuk akses offline"
+        title="Install THIRTEEN app to home screen for offline access"
       >
         <Download className="w-3.5 h-3.5" />
         <span className="hidden sm:inline font-medium text-[11px]">
-          {installing ? 'Memasang...' : 'Install PWA'}
+          {installing ? 'Installing...' : 'Install PWA'}
         </span>
       </button>
     );
@@ -41,7 +41,7 @@ export const PWAInstallButton: React.FC<{ variant?: 'header' | 'floating' | 'ban
         <button
           onClick={() => setShowIOSGuide(true)}
           className="px-2.5 py-1 rounded-lg bg-emerald-950/80 hover:bg-emerald-900 border border-emerald-700/60 text-emerald-200 text-xs font-medium flex items-center gap-1.5 transition-all cursor-pointer"
-          title="Pasang di iPhone / iPad untuk mode offline"
+          title="Install on iPhone / iPad for offline access"
         >
           <Smartphone className="w-3.5 h-3.5 text-emerald-400" />
           <span className="hidden sm:inline text-[11px]">Install iOS</span>
@@ -62,31 +62,31 @@ export const PWAInstallButton: React.FC<{ variant?: 'header' | 'floating' | 'ban
                   13
                 </div>
                 <div>
-                  <h3 className="text-base font-bold text-slate-900">Pasang di iPhone / iPad</h3>
-                  <p className="text-[11px] text-stone-500">Akses itinerary offline saat di gunung</p>
+                  <h3 className="text-base font-bold text-slate-900">Install on iPhone / iPad</h3>
+                  <p className="text-[11px] text-stone-500">Access offline itineraries in remote regions</p>
                 </div>
               </div>
 
               <div className="space-y-3 text-xs text-stone-600 border-y border-stone-100 py-4 my-2">
                 <div className="flex items-start gap-2.5">
                   <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-900 flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5">1</span>
-                  <span>Sentuh tombol <strong>Share</strong> (ikon kotak berpanah ke atas <Share2 className="w-3 h-3 inline text-blue-600" />) pada bilah bawah Safari.</span>
+                  <span>Tap the <strong>Share</strong> button (box icon with upward arrow <Share2 className="w-3 h-3 inline text-blue-600" />) on the Safari bottom bar.</span>
                 </div>
                 <div className="flex items-start gap-2.5">
                   <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-900 flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5">2</span>
-                  <span>Gulir ke bawah lalu pilih <strong>Add to Home Screen</strong> (<PlusSquare className="w-3 h-3 inline text-emerald-700" /> Tambah ke Layar Utama).</span>
+                  <span>Scroll down and select <strong>Add to Home Screen</strong> (<PlusSquare className="w-3 h-3 inline text-emerald-700" />).</span>
                 </div>
                 <div className="flex items-start gap-2.5">
                   <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-900 flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5">3</span>
-                  <span>Sentuh <strong>Add</strong> di pojok kanan atas. Aplikasi siap dibuka offline kapan saja.</span>
+                  <span>Tap <strong>Add</strong> in the top-right corner. The app is ready to launch offline anytime.</span>
                 </div>
               </div>
 
               <button
                 onClick={() => setShowIOSGuide(false)}
-                className="mt-2 w-full rounded-xl bg-[#0D201A] hover:bg-[#13362A] py-2.5 text-xs font-bold text-white transition-colors"
+                className="mt-2 w-full rounded-xl bg-[#0D201A] hover:bg-[#13362A] py-2.5 text-xs font-bold text-white transition-colors cursor-pointer min-h-[44px] flex items-center justify-center"
               >
-                Mengerti
+                Got It
               </button>
             </div>
           </div>

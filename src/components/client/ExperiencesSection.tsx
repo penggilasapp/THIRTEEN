@@ -47,7 +47,7 @@ export const ExperiencesSection: React.FC = () => {
           <div className="pt-4 flex flex-wrap items-center justify-center gap-2">
             <button
               onClick={() => setActiveCategory('all')}
-              className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
+              className={`px-4 py-2.5 min-h-[44px] rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
                 activeCategory === 'all'
                   ? 'bg-[#0F2922] text-white shadow-xs'
                   : 'bg-white text-stone-600 border border-stone-200 hover:bg-stone-100'
@@ -59,7 +59,7 @@ export const ExperiencesSection: React.FC = () => {
 
             <button
               onClick={() => setActiveCategory('nature')}
-              className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
+              className={`px-4 py-2.5 min-h-[44px] rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
                 activeCategory === 'nature'
                   ? 'bg-[#0F2922] text-white shadow-xs'
                   : 'bg-white text-stone-600 border border-stone-200 hover:bg-stone-100'
@@ -71,7 +71,7 @@ export const ExperiencesSection: React.FC = () => {
 
             <button
               onClick={() => setActiveCategory('culture')}
-              className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
+              className={`px-4 py-2.5 min-h-[44px] rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
                 activeCategory === 'culture'
                   ? 'bg-[#0F2922] text-white shadow-xs'
                   : 'bg-white text-stone-600 border border-stone-200 hover:bg-stone-100'
@@ -83,7 +83,7 @@ export const ExperiencesSection: React.FC = () => {
 
             <button
               onClick={() => setActiveCategory('adventure')}
-              className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
+              className={`px-4 py-2.5 min-h-[44px] rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
                 activeCategory === 'adventure'
                   ? 'bg-[#0F2922] text-white shadow-xs'
                   : 'bg-white text-stone-600 border border-stone-200 hover:bg-stone-100'
@@ -96,7 +96,7 @@ export const ExperiencesSection: React.FC = () => {
         </div>
 
         {/* Experiences Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {filteredExperiences.map((exp) => (
             <div
               key={exp.id}
@@ -173,13 +173,13 @@ export const ExperiencesSection: React.FC = () => {
               <div className="p-6 pt-0 flex items-center gap-3">
                 <button
                   onClick={() => setSelectedExp(exp)}
-                  className="w-1/2 py-2 px-3 rounded-xl bg-stone-100 hover:bg-stone-200 text-stone-800 text-xs font-semibold transition-colors text-center cursor-pointer"
+                  className="w-1/2 min-h-[44px] py-2.5 px-3 rounded-xl bg-stone-100 hover:bg-stone-200 text-stone-800 text-xs font-semibold transition-colors text-center cursor-pointer flex items-center justify-center"
                 >
                   Details &amp; Safety
                 </button>
                 <button
                   onClick={() => openInquireForPackage(exp.destinationId)}
-                  className="w-1/2 py-2 px-3 rounded-xl bg-[#0F2922] hover:bg-[#153A30] text-white text-xs font-bold transition-all text-center flex items-center justify-center gap-1 shadow-xs cursor-pointer"
+                  className="w-1/2 min-h-[44px] py-2.5 px-3 rounded-xl bg-[#0F2922] hover:bg-[#153A30] text-white text-xs font-bold transition-all text-center flex items-center justify-center gap-1 shadow-xs cursor-pointer"
                 >
                   <span>Inquire</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -205,7 +205,8 @@ export const ExperiencesSection: React.FC = () => {
               
               <button
                 onClick={() => setSelectedExp(null)}
-                className="absolute top-4 right-4 p-2 rounded-full bg-white/80 hover:bg-white text-stone-900 backdrop-blur-md transition-all shadow-md cursor-pointer"
+                className="absolute top-4 right-4 p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full bg-white/80 hover:bg-white text-stone-900 backdrop-blur-md transition-all shadow-md cursor-pointer"
+                aria-label="Close modal"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -221,7 +222,7 @@ export const ExperiencesSection: React.FC = () => {
             </div>
 
             {/* Content */}
-            <div className="p-6 overflow-y-auto space-y-6 text-xs sm:text-sm">
+            <div className="p-4 sm:p-6 overflow-y-auto space-y-6 text-xs sm:text-sm">
               <div>
                 <h4 className="font-bold text-slate-900 text-xs uppercase tracking-wider mb-2">
                   Experience Overview
@@ -259,15 +260,15 @@ export const ExperiencesSection: React.FC = () => {
             </div>
 
             {/* Footer */}
-            <div className="p-5 bg-stone-50 border-t border-stone-200 flex items-center justify-between shrink-0">
-              <span className="text-xs text-stone-500">
+            <div className="p-4 sm:p-5 bg-stone-50 border-t border-stone-200 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 shrink-0">
+              <span className="text-xs text-stone-500 text-center sm:text-left">
                 Fitness Rating: <strong>{selectedExp.fitnessRating}</strong>
               </span>
 
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2 sm:gap-3">
                 <button
                   onClick={() => setSelectedExp(null)}
-                  className="px-4 py-2 rounded-xl bg-white border border-stone-200 text-stone-700 text-xs font-semibold hover:bg-stone-100 cursor-pointer"
+                  className="w-1/2 sm:w-auto px-4 py-2.5 min-h-[44px] rounded-xl bg-white border border-stone-200 text-stone-700 text-xs font-semibold hover:bg-stone-100 cursor-pointer flex items-center justify-center"
                 >
                   Close
                 </button>
@@ -277,7 +278,7 @@ export const ExperiencesSection: React.FC = () => {
                     setSelectedExp(null);
                     openInquireForPackage(destId);
                   }}
-                  className="px-5 py-2 rounded-xl bg-[#0F2922] hover:bg-[#153A30] text-white text-xs font-bold shadow-sm cursor-pointer"
+                  className="w-1/2 sm:w-auto px-5 py-2.5 min-h-[44px] rounded-xl bg-[#0F2922] hover:bg-[#153A30] text-white text-xs font-bold shadow-sm cursor-pointer flex items-center justify-center text-center"
                 >
                   Design This Journey
                 </button>

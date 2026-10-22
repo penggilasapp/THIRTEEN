@@ -289,7 +289,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({
               href="https://wa.me/6281234567890?text=Hello%20THIRTEEN%20Operator%20Tour,%20I%20would%20like%20to%20inquire%20about%20booking%20and%20travel%20requirements"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto px-5 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-emerald-950 font-bold text-xs flex items-center justify-center gap-2 transition-all shadow-md"
+              className="w-full sm:w-auto px-5 py-3 min-h-[44px] rounded-xl bg-emerald-500 hover:bg-emerald-400 text-emerald-950 font-bold text-xs flex items-center justify-center gap-2 transition-all shadow-md text-center"
             >
               <MessageSquare className="w-4 h-4" />
               <span>Chat on WhatsApp (24/7)</span>
@@ -297,7 +297,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({
 
             <button
               onClick={() => openInquireForPackage()}
-              className="w-full sm:w-auto px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold text-xs border border-white/20 transition-all flex items-center justify-center gap-2 cursor-pointer"
+              className="w-full sm:w-auto px-5 py-3 min-h-[44px] rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold text-xs border border-white/20 transition-all flex items-center justify-center gap-2 cursor-pointer text-center"
             >
               <Sparkles className="w-4 h-4 text-emerald-300" />
               <span>Request Custom Quote</span>

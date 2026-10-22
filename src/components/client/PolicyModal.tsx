@@ -37,9 +37,9 @@ export const PolicyModal: React.FC<PolicyModalProps> = ({ type, onClose }) => {
     <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
       <div className="bg-white border border-stone-200 rounded-3xl w-full max-w-3xl text-stone-800 shadow-2xl relative overflow-hidden my-auto max-h-[90vh] flex flex-col">
         {/* Header */}
-        <div className="px-6 py-5 border-b border-stone-200 flex items-center justify-between bg-[#FAF9F6] shrink-0">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-800">
+        <div className="px-4 sm:px-6 py-4 sm:py-5 border-b border-stone-200 flex items-center justify-between gap-3 bg-[#FAF9F6] shrink-0">
+          <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-800 shrink-0">
               {type === 'faq' && <HelpCircle className="w-5 h-5" />}
               {type === 'booking_info' && <FileText className="w-5 h-5" />}
               {type === 'cancellation' && <AlertTriangle className="w-5 h-5 text-amber-700" />}
@@ -47,11 +47,11 @@ export const PolicyModal: React.FC<PolicyModalProps> = ({ type, onClose }) => {
               {type === 'privacy' && <Lock className="w-5 h-5" />}
               {type === 'contact_info' && <Phone className="w-5 h-5" />}
             </div>
-            <div>
-              <span className="text-[10px] uppercase font-bold tracking-wider text-emerald-800">
+            <div className="min-w-0">
+              <span className="text-[10px] uppercase font-bold tracking-wider text-emerald-800 block truncate">
                 THIRTEEN Operator Tour • Operational Governance
               </span>
-              <h3 className="text-xl sm:text-2xl font-bold font-['Playfair_Display'] text-slate-900">
+              <h3 className="text-base sm:text-2xl font-bold font-['Playfair_Display'] text-slate-900 truncate">
                 {type === 'faq' && 'Frequently Asked Questions (FAQ)'}
                 {type === 'booking_info' && BOOKING_INFO_DATA.title}
                 {type === 'cancellation' && CANCELLATION_POLICY_DATA.title}
@@ -62,17 +62,19 @@ export const PolicyModal: React.FC<PolicyModalProps> = ({ type, onClose }) => {
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1 shrink-0">
             <button
               onClick={handlePrint}
               title="Print Policy Document"
-              className="p-2 rounded-xl text-stone-500 hover:text-stone-900 hover:bg-stone-200/60 cursor-pointer"
+              className="p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl text-stone-500 hover:text-stone-900 hover:bg-stone-200/60 cursor-pointer"
+              aria-label="Print document"
             >
               <Printer className="w-4 h-4" />
             </button>
             <button
               onClick={onClose}
-              className="p-2 rounded-xl text-stone-500 hover:text-stone-900 hover:bg-stone-200/60 cursor-pointer"
+              className="p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl text-stone-500 hover:text-stone-900 hover:bg-stone-200/60 cursor-pointer"
+              aria-label="Close dialog"
             >
               <X className="w-5 h-5" />
             </button>
@@ -80,7 +82,7 @@ export const PolicyModal: React.FC<PolicyModalProps> = ({ type, onClose }) => {
         </div>
 
         {/* Modal Scrollable Body */}
-        <div className="p-6 sm:p-8 overflow-y-auto space-y-6 text-xs sm:text-sm">
+        <div className="p-4 sm:p-8 overflow-y-auto space-y-6 text-xs sm:text-sm">
           {/* FAQ CONTENT */}
           {type === 'faq' && (
             <div className="space-y-6">
@@ -215,13 +217,13 @@ export const PolicyModal: React.FC<PolicyModalProps> = ({ type, onClose }) => {
         </div>
 
         {/* Footer */}
-        <div className="px-6 py-4 bg-[#FAF9F6] border-t border-stone-200 flex items-center justify-between shrink-0">
-          <span className="text-[11px] text-stone-500">
+        <div className="px-4 sm:px-6 py-3.5 sm:py-4 bg-[#FAF9F6] border-t border-stone-200 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 shrink-0">
+          <span className="text-[11px] text-stone-500 text-center sm:text-left">
             Compliant with Indonesian Tourism &amp; Conservation Regulations
           </span>
           <button
             onClick={onClose}
-            className="px-5 py-2 rounded-xl bg-[#0F2922] text-white text-xs font-bold hover:bg-[#153A30] cursor-pointer"
+            className="w-full sm:w-auto px-5 py-2.5 min-h-[44px] rounded-xl bg-[#0F2922] text-white text-xs font-bold hover:bg-[#153A30] cursor-pointer flex items-center justify-center text-center"
           >
             Close Document
           </button>

@@ -12,9 +12,9 @@ export const OfflineIndicator: React.FC = () => {
       <div className="w-2 h-2 rounded-full bg-amber-400 animate-ping" />
       <WifiOff className="w-4 h-4 text-amber-400 shrink-0" />
       <div>
-        <span className="font-bold text-white block text-[11px]">Mode Offline (Jaringan Terputus)</span>
+        <span className="font-bold text-white block text-[11px]">Offline Mode (Network Disconnected)</span>
         <span className="text-[10px] text-emerald-200/80">
-          Data paket tur, jadwal harian, &amp; panduan keselamatan tersimpan di cache.
+          Tour route data, itineraries, &amp; field safety guides cached locally.
         </span>
       </div>
     </div>

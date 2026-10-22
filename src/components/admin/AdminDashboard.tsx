@@ -77,16 +77,16 @@ export const AdminDashboard: React.FC = () => {
 
             <button
               onClick={() => setExportModalOpen(true)}
-              className="px-3.5 py-1.5 rounded-xl bg-emerald-900/60 hover:bg-emerald-800 text-emerald-200 hover:text-white border border-emerald-700/50 text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-xs cursor-pointer"
-              title="Unduh & Ekspor Seluruh Data Sumber (JSON & CSV)"
+              className="px-3.5 py-1.5 rounded-xl bg-emerald-900/60 hover:bg-emerald-800 text-emerald-200 hover:text-white border border-emerald-700/50 text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-xs cursor-pointer min-h-[38px]"
+              title="Export All Source Datasets (JSON & CSV)"
             >
               <Download className="w-3.5 h-3.5 text-emerald-400" />
-              <span>Ekspor Data</span>
+              <span>Export Data</span>
             </button>
 
             <button
               onClick={() => setViewMode('client')}
-              className="px-3.5 py-1.5 rounded-xl bg-white text-emerald-950 hover:bg-emerald-50 text-xs font-bold flex items-center gap-1.5 transition-colors shadow-xs cursor-pointer"
+              className="px-3.5 py-1.5 rounded-xl bg-white text-emerald-950 hover:bg-emerald-50 text-xs font-bold flex items-center gap-1.5 transition-colors shadow-xs cursor-pointer min-h-[38px]"
             >
               <Eye className="w-3.5 h-3.5 text-emerald-800" />
               <span>Client Portal</span>
@@ -97,11 +97,11 @@ export const AdminDashboard: React.FC = () => {
         {/* Navigation Tabs */}
         <div className="max-w-7xl mx-auto mt-4 flex items-center gap-2 border-t border-emerald-900/60 pt-3 overflow-x-auto">
           {[
-            { id: 'crm', label: 'Pemesanan & CRM Leads', icon: Users, badge: bookings.length },
-            { id: 'itinerary', label: 'Manajemen Itinerary', icon: Calendar },
-            { id: 'packages', label: 'Katalog Paket Wisata', icon: Compass },
-            { id: 'partners', label: 'Jaringan Mitra Terverifikasi', icon: ShieldCheck },
-            { id: 'analytics', label: 'Metrik & Evaluasi', icon: BarChart3 }
+            { id: 'crm', label: 'Bookings & CRM Leads', icon: Users, badge: bookings.length },
+            { id: 'itinerary', label: 'Itinerary Operations', icon: Calendar },
+            { id: 'packages', label: 'Tour Catalogue', icon: Compass },
+            { id: 'partners', label: 'Verified Partners', icon: ShieldCheck },
+            { id: 'analytics', label: 'Metrics & Performance', icon: BarChart3 }
           ].map((tab) => {
             const Icon = tab.icon;
             const isActive = activeTab === tab.id;
@@ -109,7 +109,7 @@ export const AdminDashboard: React.FC = () => {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id as any)}
-                className={`px-3.5 py-2 rounded-xl text-xs font-semibold transition-all flex items-center gap-2 shrink-0 ${
+                className={`px-3.5 py-2 rounded-xl text-xs font-semibold transition-all flex items-center gap-2 shrink-0 cursor-pointer min-h-[40px] ${
                   isActive
                     ? 'bg-white text-emerald-950 font-bold shadow-xs'
                     : 'text-emerald-200/80 hover:text-white hover:bg-white/10'
