@@ -40,8 +40,10 @@ interface TourContextType {
     customerPhone: string;
     customerCountry: string;
     preferredLanguage: 'en' | 'id' | 'de' | 'fr' | 'nl' | 'zh';
-    destinationId: string;
+    destinationId?: string;
+    destinationIds?: string[];
     packageId?: string;
+    packageIds?: string[];
     serviceTier: 'essential' | 'private' | 'premium_concierge';
     startDate: string;
     endDate: string;
@@ -96,12 +98,19 @@ interface TourContextType {
   setSelectedTourId: (id: string | null) => void;
   navigateToTourDetail: (tourId: string) => void;
 
-  // Inquire Modal Trigger
+  // Inquire Modal & Multi-Tour Selection
   inquireModalOpen: boolean;
   setInquireModalOpen: (open: boolean) => void;
   preselectedPackageId: string | null;
   preselectedDestinationId: string | null;
+  preselectedPackageIds: string[];
+  preselectedDestinationIds: string[];
+  selectedMultiPackageIds: string[];
+  toggleSelectMultiPackage: (packageId: string) => void;
+  clearSelectedMultiPackages: () => void;
+  isPackageSelectedForMulti: (packageId: string) => boolean;
   openInquireForPackage: (packageId?: string, destinationId?: string) => void;
+  openInquireForMultiPackages: (packageIds: string[], destinationIds?: string[]) => void;
 
   resetToDefaults: () => void;
 }
@@ -266,10 +275,39 @@ export const TourProvider: React.FC<{ children: React.ReactNode }> = ({ children
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
-  // Modal state
+  // Modal & Multi-Tour Selection state
   const [inquireModalOpen, setInquireModalOpen] = useState(false);
   const [preselectedPackageId, setPreselectedPackageId] = useState<string | null>(null);
   const [preselectedDestinationId, setPreselectedDestinationId] = useState<string | null>(null);
+  const [preselectedPackageIds, setPreselectedPackageIds] = useState<string[]>([]);
+  const [preselectedDestinationIds, setPreselectedDestinationIds] = useState<string[]>([]);
+  const [selectedMultiPackageIds, setSelectedMultiPackageIds] = useState<string[]>(() => {
+    const saved = localStorage.getItem(`${STORAGE_KEY_PREFIX}multi_packages`);
+    if (saved) {
+      try { return JSON.parse(saved); } catch (e) { console.error(e); }
+    }
+    return [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem(`${STORAGE_KEY_PREFIX}multi_packages`, JSON.stringify(selectedMultiPackageIds));
+  }, [selectedMultiPackageIds]);
+
+  const toggleSelectMultiPackage = (packageId: string) => {
+    setSelectedMultiPackageIds(prev => 
+      prev.includes(packageId) 
+        ? prev.filter(id => id !== packageId) 
+        : [...prev, packageId]
+    );
+  };
+
+  const clearSelectedMultiPackages = () => {
+    setSelectedMultiPackageIds([]);
+  };
+
+  const isPackageSelectedForMulti = (packageId: string) => {
+    return selectedMultiPackageIds.includes(packageId);
+  };
 
   // Sync to local storage
   useEffect(() => {
@@ -311,8 +349,10 @@ export const TourProvider: React.FC<{ children: React.ReactNode }> = ({ children
     customerPhone: string;
     customerCountry: string;
     preferredLanguage: 'en' | 'id' | 'de' | 'fr' | 'nl' | 'zh';
-    destinationId: string;
+    destinationId?: string;
+    destinationIds?: string[];
     packageId?: string;
+    packageIds?: string[];
     serviceTier: 'essential' | 'private' | 'premium_concierge';
     startDate: string;
     endDate: string;
@@ -326,41 +366,67 @@ export const TourProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const newRef = `TT-2026-${randomSuffix}`;
     const inqId = `INQ-2026-${randomSuffix}`;
 
-    const dest = destinations.find(d => d.id === data.destinationId);
-    const pkg = packages.find(p => p.id === data.packageId);
+    // Resolve destinations
+    const destIds: string[] = data.destinationIds && data.destinationIds.length > 0 
+      ? data.destinationIds 
+      : data.destinationId ? [data.destinationId] : ['dest-bromo'];
+    const matchedDests = destinations.filter(d => destIds.includes(d.id));
+    const destName = matchedDests.length > 0 
+      ? matchedDests.map(d => d.name).join(' & ') 
+      : 'Indonesian Archipelago';
 
-    // Build initial active itinerary draft from template if package chosen
-    const activeItineraryDays: ActiveItineraryDay[] = pkg ? pkg.itineraryDays.map((d, index) => {
-      // calculate tentative date from startDate
-      let dateStr = data.startDate;
-      try {
-        const start = new Date(data.startDate);
-        if (!isNaN(start.getTime())) {
-          start.setDate(start.getDate() + index);
-          dateStr = start.toISOString().split('T')[0];
-        }
-      } catch (e) {
-        console.error(e);
-      }
+    // Resolve packages
+    const pkgIds: string[] = data.packageIds && data.packageIds.length > 0 
+      ? data.packageIds 
+      : data.packageId ? [data.packageId] : [];
+    const matchedPkgs = packages.filter(p => pkgIds.includes(p.id));
+    
+    let packageTitle = 'Bespoke Custom Route';
+    if (matchedPkgs.length === 1) {
+      packageTitle = matchedPkgs[0].title;
+    } else if (matchedPkgs.length > 1) {
+      packageTitle = `Combined Expedition: ${matchedPkgs.map(p => p.title).join(' + ')}`;
+    }
 
-      return {
-        dayNumber: d.dayNumber,
-        date: dateStr,
-        title: d.title,
-        subtitle: d.subtitle,
-        stayLocation: d.stayLocation,
-        activities: d.schedule.map((s, sIdx) => ({
-          id: `act-gen-${Date.now()}-${sIdx}`,
-          time: s.time,
-          activity: s.activity,
-          location: s.location,
-          completed: false
-        })),
-        driverNotes: 'Pending driver allocation upon quotation confirmation.',
-        safetyChecklistVerified: false,
-        emergencyContact: '+62 812-3456-7890'
-      };
-    }) : [];
+    // Build combined active itinerary draft from all selected packages
+    const activeItineraryDays: ActiveItineraryDay[] = [];
+    let currentDayNumber = 1;
+
+    if (matchedPkgs.length > 0) {
+      matchedPkgs.forEach((p) => {
+        p.itineraryDays.forEach((d) => {
+          let dateStr = data.startDate;
+          try {
+            const start = new Date(data.startDate);
+            if (!isNaN(start.getTime())) {
+              start.setDate(start.getDate() + (currentDayNumber - 1));
+              dateStr = start.toISOString().split('T')[0];
+            }
+          } catch (e) {
+            console.error(e);
+          }
+
+          activeItineraryDays.push({
+            dayNumber: currentDayNumber,
+            date: dateStr,
+            title: d.title,
+            subtitle: d.subtitle,
+            stayLocation: d.stayLocation,
+            activities: d.schedule.map((s, sIdx) => ({
+              id: `act-gen-${Date.now()}-${currentDayNumber}-${sIdx}`,
+              time: s.time,
+              activity: s.activity,
+              location: s.location,
+              completed: false
+            })),
+            driverNotes: 'Pending driver allocation upon quotation confirmation.',
+            safetyChecklistVerified: false,
+            emergencyContact: '+62 812-3456-7890'
+          });
+          currentDayNumber++;
+        });
+      });
+    }
 
     const newBooking: BookingInquiry = {
       id: inqId,
@@ -375,12 +441,16 @@ export const TourProvider: React.FC<{ children: React.ReactNode }> = ({ children
         preferredLanguage: data.preferredLanguage
       },
       tripDetails: {
-        destinationId: data.destinationId,
-        destinationName: dest ? dest.name : 'Indonesian Archipelago',
-        packageId: data.packageId,
-        packageTitle: pkg ? pkg.title : 'Bespoke Custom Route',
+        destinationId: destIds[0] || 'dest-bromo',
+        destinationName: destName,
+        destinationIds: destIds,
+        destinationNames: matchedDests.map(d => d.name),
+        packageId: pkgIds[0] || undefined,
+        packageTitle: packageTitle,
+        packageIds: pkgIds,
+        packageTitles: matchedPkgs.map(p => p.title),
         serviceTier: data.serviceTier,
-        tourType: pkg ? pkg.tourType : 'custom_private',
+        tourType: matchedPkgs.length > 1 ? 'multiday_expedition' : (matchedPkgs[0]?.tourType || 'custom_private'),
         startDate: data.startDate,
         endDate: data.endDate,
         paxCount: data.adults + data.children,
@@ -403,10 +473,10 @@ export const TourProvider: React.FC<{ children: React.ReactNode }> = ({ children
           date: new Date().toISOString(),
           specialist: 'System Automation',
           channel: 'email',
-          summary: 'Automated receipt dispatched to client with booking reference. Scheduled for specialist consultation.'
+          summary: `Automated receipt dispatched to client with booking reference ${newRef}. Multi-tour/destination configuration saved for consultation.`
         }
       ],
-      internalNotes: `Client submitted inquiry from ${data.customerCountry}. Tier requested: ${data.serviceTier.toUpperCase()}.`
+      internalNotes: `Client submitted inquiry from ${data.customerCountry}. Multi-destination: ${destName}. Packages requested: ${matchedPkgs.length > 0 ? matchedPkgs.map(p => p.title).join(', ') : 'Custom Route'}. Tier: ${data.serviceTier.toUpperCase()}.`
     };
 
     setBookings(prev => [newBooking, ...prev]);
@@ -584,6 +654,27 @@ export const TourProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const openInquireForPackage = (packageId?: string, destinationId?: string) => {
     setPreselectedPackageId(packageId || null);
     setPreselectedDestinationId(destinationId || null);
+    setPreselectedPackageIds(packageId ? [packageId] : []);
+    setPreselectedDestinationIds(destinationId ? [destinationId] : []);
+    setInquireModalOpen(true);
+  };
+
+  const openInquireForMultiPackages = (packageIds: string[], destinationIds?: string[]) => {
+    setPreselectedPackageIds(packageIds);
+    setPreselectedPackageId(packageIds[0] || null);
+    if (destinationIds && destinationIds.length > 0) {
+      setPreselectedDestinationIds(destinationIds);
+      setPreselectedDestinationId(destinationIds[0] || null);
+    } else {
+      const derivedDestIds = Array.from(new Set(
+        packages
+          .filter(p => packageIds.includes(p.id))
+          .map(p => p.destinationId)
+          .filter(Boolean)
+      ));
+      setPreselectedDestinationIds(derivedDestIds);
+      setPreselectedDestinationId(derivedDestIds[0] || null);
+    }
     setInquireModalOpen(true);
   };
 
@@ -591,6 +682,8 @@ export const TourProvider: React.FC<{ children: React.ReactNode }> = ({ children
     localStorage.removeItem(`${STORAGE_KEY_PREFIX}packages`);
     localStorage.removeItem(`${STORAGE_KEY_PREFIX}bookings`);
     localStorage.removeItem(`${STORAGE_KEY_PREFIX}partners`);
+    localStorage.removeItem(`${STORAGE_KEY_PREFIX}multi_packages`);
+    setSelectedMultiPackageIds([]);
     setPackages(INITIAL_PACKAGES);
     setBookings(INITIAL_BOOKINGS);
     setPartners(INITIAL_PARTNERS);
@@ -646,7 +739,14 @@ export const TourProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setInquireModalOpen,
         preselectedPackageId,
         preselectedDestinationId,
+        preselectedPackageIds,
+        preselectedDestinationIds,
+        selectedMultiPackageIds,
+        toggleSelectMultiPackage,
+        clearSelectedMultiPackages,
+        isPackageSelectedForMulti,
         openInquireForPackage,
+        openInquireForMultiPackages,
         resetToDefaults
       }}
     >

@@ -12,7 +12,10 @@ import {
   Activity,
   ArrowRight,
   ShieldCheck,
-  ChevronRight
+  ChevronRight,
+  Layers,
+  Plus,
+  Check
 } from 'lucide-react';
 
 interface TourRouteCardProps {
@@ -30,9 +33,15 @@ export const TourRouteCard: React.FC<TourRouteCardProps> = ({
   onInspect,
   onInquire,
   viewDetailsLabel = 'View Itinerary',
-  inquireLabel = 'Request a Personalized Quote'
+  inquireLabel = 'Request Tailored Quote'
 }) => {
-  const { navigateToTourDetail } = useTour();
+  const { 
+    navigateToTourDetail, 
+    toggleSelectMultiPackage, 
+    isPackageSelectedForMulti 
+  } = useTour();
+
+  const isSelectedForMulti = isPackageSelectedForMulti(pkg.id);
 
   const getTourTypeLabel = (type: TourType) => {
     switch (type) {
@@ -182,47 +191,72 @@ export const TourRouteCard: React.FC<TourRouteCardProps> = ({
             ))}
           </div>
 
-          {/* Tailored Pricing Policy Block (Strictly No Public Tour Prices) */}
+          {/* Bespoke Private Expedition Overview (Strictly Informative, Zero Price) */}
           <div className="p-4 rounded-2xl bg-white border border-stone-200/90 shadow-2xs space-y-2">
             <div className="flex items-center justify-between">
               <span className="text-[10px] uppercase font-bold text-emerald-900 tracking-wider flex items-center gap-1.5">
                 <ShieldCheck className="w-3.5 h-3.5 text-emerald-700" />
-                <span>Tailored Pricing</span>
+                <span>100% Private Expedition</span>
               </span>
               <span className="text-[10px] font-semibold text-stone-500 uppercase tracking-wider">
-                Private Guarantee
+                Full Customization
               </span>
             </div>
 
             <p className="text-xs text-stone-600 leading-relaxed">
-              Every journey is quoted according to your itinerary, group size, travel dates, accommodation preferences, and operational requirements.
+              Operated with dedicated executive 4x4 vehicles, certified local guides, hand-picked boutique mountain lodges, and flexible daily pacing.
             </p>
 
             <div className="pt-1.5 border-t border-stone-100 flex items-center justify-between text-[11px] text-stone-500 flex-wrap gap-1">
-              <span className="text-emerald-900 font-medium">All-inclusive private logistics &amp; certified guides</span>
-              <span className="text-stone-400">Customizable</span>
+              <span className="text-emerald-900 font-medium">All permits &amp; safety respirators included</span>
+              <span className="text-stone-400">Can combine with other tours</span>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Bottom Actions */}
-      <div className="p-4 sm:p-6 pt-0 flex flex-col sm:flex-row items-center gap-2.5 sm:gap-3">
+      {/* Multi-Tour Combiner & Primary Actions */}
+      <div className="p-4 sm:p-6 pt-0 space-y-2.5">
+        {/* Combine Multi-Tour Toggle Button */}
         <button
-          onClick={() => navigateToTourDetail(pkg.id)}
-          className="w-full sm:w-1/2 py-3 px-4 rounded-xl bg-white hover:bg-stone-100 text-stone-800 border border-stone-200 text-xs font-semibold transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-2xs min-h-[44px]"
+          onClick={() => toggleSelectMultiPackage(pkg.id)}
+          className={`w-full py-2.5 px-3 rounded-xl border text-xs font-semibold transition-all flex items-center justify-center gap-2 cursor-pointer ${
+            isSelectedForMulti
+              ? 'bg-[#0F2922] text-white border-emerald-800 shadow-xs'
+              : 'bg-emerald-50/70 hover:bg-emerald-100/80 text-emerald-950 border-emerald-200/80'
+          }`}
         >
-          <Clock className="w-3.5 h-3.5 text-emerald-800" />
-          <span>{viewDetailsLabel}</span>
+          {isSelectedForMulti ? (
+            <>
+              <Check className="w-3.5 h-3.5 text-emerald-300" />
+              <span>Selected for Multi-Tour Plan (Added)</span>
+            </>
+          ) : (
+            <>
+              <Layers className="w-3.5 h-3.5 text-emerald-800" />
+              <span>+ Select &amp; Combine with Other Tours</span>
+            </>
+          )}
         </button>
 
-        <button
-          onClick={() => onInquire(pkg.id)}
-          className="w-full sm:w-1/2 py-3 px-4 rounded-xl bg-[#0F2922] hover:bg-[#153A30] text-white text-xs font-bold transition-all shadow-sm flex items-center justify-center gap-2 cursor-pointer min-h-[44px]"
-        >
-          <Sparkles className="w-3.5 h-3.5 text-emerald-300" />
-          <span>{inquireLabel}</span>
-        </button>
+        {/* View Details & Inquire */}
+        <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-2.5">
+          <button
+            onClick={() => navigateToTourDetail(pkg.id)}
+            className="w-full sm:w-1/2 py-2.5 px-3 rounded-xl bg-white hover:bg-stone-100 text-stone-800 border border-stone-200 text-xs font-semibold transition-colors flex items-center justify-center gap-1.5 cursor-pointer shadow-2xs min-h-[42px]"
+          >
+            <Clock className="w-3.5 h-3.5 text-emerald-800" />
+            <span>{viewDetailsLabel}</span>
+          </button>
+
+          <button
+            onClick={() => onInquire(pkg.id)}
+            className="w-full sm:w-1/2 py-2.5 px-3 rounded-xl bg-[#0F2922] hover:bg-[#153A30] text-white text-xs font-bold transition-all shadow-sm flex items-center justify-center gap-1.5 cursor-pointer min-h-[42px]"
+          >
+            <Sparkles className="w-3.5 h-3.5 text-emerald-300" />
+            <span>{inquireLabel}</span>
+          </button>
+        </div>
       </div>
     </div>
   );

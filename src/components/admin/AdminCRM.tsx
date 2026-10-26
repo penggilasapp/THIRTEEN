@@ -186,7 +186,7 @@ export const AdminCRM: React.FC<{ onOpenItineraryBuilder: (bookingId: string) =>
               <tr>
                 <th className="py-3.5 px-4">Ref & Customer</th>
                 <th className="py-3.5 px-4">Route & Destination</th>
-                <th className="py-3.5 px-4">Window & Pax</th>
+                <th className="py-3.5 px-4">Travel Dates & Guests</th>
                 <th className="py-3.5 px-4">Quotation & Payment</th>
                 <th className="py-3.5 px-4">Pipeline Status</th>
                 <th className="py-3.5 px-4 text-right">Actions</th>

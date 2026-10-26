@@ -34,7 +34,10 @@ export const TourDetailPage: React.FC = () => {
     selectedTourId, 
     setClientPage, 
     navigateToTourDetail,
-    openInquireForPackage 
+    openInquireForPackage,
+    toggleSelectMultiPackage,
+    isPackageSelectedForMulti,
+    selectedMultiPackageIds
   } = useTour();
 
   const [activeDay, setActiveDay] = useState<number>(1);
@@ -600,10 +603,10 @@ export const TourDetailPage: React.FC = () => {
                   </span>
                 </div>
                 <h3 className="text-xl font-bold font-['Playfair_Display'] text-slate-900">
-                  Bespoke Private Pricing
+                  Bespoke Private Expedition
                 </h3>
                 <p className="text-xs text-stone-600 leading-relaxed">
-                  In accordance with THIRTEEN’s private expedition policy, pricing is calculated transparently based on your exact travel dates, party size, accommodation class, and custom logistics.
+                  Operated exclusively as a 100% private journey. Tailored to your travel party, preferred dates, and luxury tier with continuous concierge coordination.
                 </p>
               </div>
 
@@ -627,14 +630,33 @@ export const TourDetailPage: React.FC = () => {
                 </div>
               </div>
 
+              {/* Multi-Tour Combination Option */}
+              <div className="pt-2">
+                <button
+                  onClick={() => toggleSelectMultiPackage(pkg.id)}
+                  className={`w-full py-2.5 px-3 rounded-xl border text-xs font-semibold transition-all flex items-center justify-center gap-2 cursor-pointer ${
+                    isPackageSelectedForMulti(pkg.id)
+                      ? 'bg-[#0F2922] text-white border-emerald-800 shadow-xs'
+                      : 'bg-emerald-50 text-emerald-950 border-emerald-300 hover:bg-emerald-100'
+                  }`}
+                >
+                  <Layers className="w-3.5 h-3.5" />
+                  <span>
+                    {isPackageSelectedForMulti(pkg.id)
+                      ? '✓ Included in Multi-Tour Plan (Added)'
+                      : '+ Combine with Another Tour / Region'}
+                  </span>
+                </button>
+              </div>
+
               {/* Action Buttons */}
-              <div className="space-y-3 pt-2">
+              <div className="space-y-3 pt-1">
                 <button
                   onClick={() => openInquireForPackage(pkg.id)}
                   className="w-full py-4 px-5 rounded-2xl bg-[#0F2922] hover:bg-[#153A30] text-white text-xs sm:text-sm font-bold transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer min-h-[48px]"
                 >
                   <Sparkles className="w-4 h-4 text-emerald-300" />
-                  <span>Request a Personalized Quote</span>
+                  <span>Request Bespoke Itinerary &amp; Quote</span>
                 </button>
 
                 <a

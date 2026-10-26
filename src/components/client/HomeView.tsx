@@ -58,6 +58,9 @@ export const HomeView: React.FC = () => {
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold font-['Playfair_Display'] text-slate-900">
                 Curated Expeditions &amp; Routes
               </h2>
+              <p className="text-xs sm:text-sm text-stone-600 max-w-xl">
+                Operated strictly as 100% private journeys. You can select and combine multiple expeditions or destinations into a connected overland itinerary.
+              </p>
             </div>
 
             <button

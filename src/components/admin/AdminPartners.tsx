@@ -223,7 +223,7 @@ export const AdminPartners: React.FC = () => {
                     required
                     value={contactPerson}
                     onChange={(e) => setContactPerson(e.target.value)}
-                    placeholder="e.g. Pak Joko / Dr. Retno"
+                    placeholder="e.g. Joko Rahardjo / Dr. Retno"
                     className="w-full bg-stone-50 border border-stone-200 rounded-xl px-3 py-2 text-stone-900"
                   />
                 </div>

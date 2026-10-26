@@ -837,7 +837,7 @@ export const INITIAL_PARTNERS: CertifiedPartner[] = [
     destination: 'Mount Bromo',
     verified: true,
     licenseNumber: 'DISPAR-TGR-4X4-2026/042',
-    contactPerson: 'Pak Budi Waluyo',
+    contactPerson: 'Budi Waluyo (Fleet Operations Lead)',
     phone: '+62 812-3456-7890',
     email: 'tengger.jeep@thirteen-partner.id',
     safetyRating: 4.9,
@@ -853,7 +853,7 @@ export const INITIAL_PARTNERS: CertifiedPartner[] = [
     destination: 'Mount Ijen',
     verified: true,
     licenseNumber: 'BKSDA-IJN-GUIDE-8819',
-    contactPerson: 'Kang Supardi (Ex-Miner Leader)',
+    contactPerson: 'Supardi (Chief Mountain Ranger)',
     phone: '+62 821-9876-5432',
     email: 'supardi.ijen@thirteen-partner.id',
     safetyRating: 5.0,
@@ -982,7 +982,7 @@ export const INITIAL_BOOKINGS: BookingInquiry[] = [
           { id: 'act-102', time: '13:00', activity: 'Scenic local lunch in Pasuruan plantation valley', location: 'Rawon Nguling Heritage' },
           { id: 'act-103', time: '15:30', activity: 'Check-in to Jiwa Jawa Bromo; hot ginger tea overlooking the mist', location: 'Jiwa Jawa Bromo', completed: false }
         ],
-        driverNotes: 'Flight GA312 arriving 08:45 AM. Chauffeur Pak Hendra holding THIRTEEN nameboard.',
+        driverNotes: 'Flight GA312 arriving 08:45 AM. Chauffeur Hendra holding THIRTEEN nameboard.',
         safetyChecklistVerified: true,
         emergencyContact: '+62 813-2233-4455'
       },
@@ -998,7 +998,7 @@ export const INITIAL_BOOKINGS: BookingInquiry[] = [
           { id: 'act-203', time: '10:30', activity: 'Private transit through coffee estate route towards Banyuwangi coast', location: 'Trans-Java route', partnerId: 'part-03', partnerName: 'East Java Luxury Trans' },
           { id: 'act-204', time: '17:00', activity: 'Check in to Dialoog Banyuwangi overlooking Bali Strait; early night rest', location: 'Dialoog Banyuwangi' }
         ],
-        driverNotes: 'Jeep driver Pak Budi confirmed. Warm thermal fleece verified in client preparation.',
+        driverNotes: 'Jeep driver Budi Waluyo confirmed. Warm thermal fleece verified in client preparation.',
         safetyChecklistVerified: true,
         emergencyContact: '+62 812-3456-7890'
       },
@@ -1010,7 +1010,7 @@ export const INITIAL_BOOKINGS: BookingInquiry[] = [
         stayLocation: 'Ketapang Port / Transfer to Bali',
         activities: [
           { id: 'act-301', time: '01:00', activity: 'Midnight drive to Paltuding basecamp; health questionnaire and respirator briefing', location: 'Paltuding Basecamp', partnerId: 'part-02', partnerName: 'Ijen Alpine Miner Guild' },
-          { id: 'act-302', time: '03:45', activity: 'Witness electric-blue fire flames with certified guide Kang Supardi', location: 'Ijen Crater Basin' },
+          { id: 'act-302', time: '03:45', activity: 'Witness electric-blue fire flames with certified guide Supardi', location: 'Ijen Crater Basin' },
           { id: 'act-303', time: '06:00', activity: 'Sunrise panorama over turquoise acidic lake; descent to breakfast', location: 'Ijen Rim' },
           { id: 'act-304', time: '11:00', activity: 'VIP ferry charter crossing to Gilimanuk, West Bali', location: 'Ketapang Ferry Port', partnerId: 'part-03', partnerName: 'East Java Luxury Trans' }
         ],

@@ -10,6 +10,7 @@ import { ContactSection } from './ContactSection';
 import { FAQSection } from './FAQSection';
 import { TourDetailPage } from './TourDetailPage';
 import { ClientPortalView } from './ClientPortalView';
+import { MultiTourPlannerBar } from './MultiTourPlannerBar';
 import { Footer } from './Footer';
 import { ChevronRight, Home, ArrowLeft } from 'lucide-react';
 
@@ -119,6 +120,9 @@ export const ClientApp: React.FC = () => {
           </div>
         )}
       </main>
+
+      {/* Floating Multi-Tour Combination Bar when 1+ tours are selected */}
+      <MultiTourPlannerBar />
 
       {/* Footer: FAQ, Booking Information, Cancellation Policy, Terms & Conditions, Privacy Policy, Contact Information, Social Media */}
       <Footer />

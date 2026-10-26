@@ -55,7 +55,7 @@ export const ToursSection: React.FC = () => {
           </h2>
 
           <p className="text-stone-600 text-xs sm:text-sm leading-relaxed max-w-2xl">
-            Explore private journeys across Java and Bali, with routes shaped around your destinations, travel dates, and personal preferences. Every expedition includes guaranteed 4x4 vehicles, certified local guides, and tailored pacing.
+            Explore private journeys across Java and Bali, with routes shaped around your destinations, travel dates, and personal preferences. You can select and combine multiple expeditions into a continuous overland journey using the multi-tour selector on any card.
           </p>
         </div>
 

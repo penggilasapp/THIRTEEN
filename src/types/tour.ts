@@ -178,8 +178,12 @@ export interface BookingInquiry {
   tripDetails: {
     destinationId: string;
     destinationName: string;
+    destinationIds?: string[];
+    destinationNames?: string[];
     packageId?: string;
     packageTitle: string;
+    packageIds?: string[];
+    packageTitles?: string[];
     serviceTier: ServiceTier;
     tourType: TourType;
     startDate: string;

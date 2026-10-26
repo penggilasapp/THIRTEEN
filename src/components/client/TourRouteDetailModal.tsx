@@ -112,18 +112,18 @@ export const TourRouteDetailModal: React.FC<TourRouteDetailModalProps> = ({
             </div>
           )}
 
-          {/* Quotation Policy Card (Tailored Pricing) */}
+          {/* Expedition Policy Card (Strictly Informative, No Price) */}
           <div className="p-4 sm:p-5 rounded-2xl bg-[#F6F8F5] border border-emerald-900/20 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="space-y-1">
               <span className="text-[10px] uppercase font-bold text-emerald-900 tracking-wider flex items-center gap-1.5">
                 <ShieldCheck className="w-4 h-4 text-emerald-800" />
-                <span>Tailored Pricing Policy</span>
+                <span>100% Private Expedition Architecture</span>
               </span>
               <p className="text-sm font-semibold text-slate-900">
-                Bespoke Quotation Shaped to Your Travel Preferences
+                Bespoke Expedition Tailored to Your Travel Vision
               </p>
               <p className="text-xs text-stone-600 max-w-xl leading-relaxed">
-                Every journey is quoted according to your itinerary, group size, travel dates, accommodation preferences, and operational requirements.
+                Operated with dedicated private 4x4 vehicles, certified alpine and cultural guides, boutique accommodations, and flexible pacing. Can be combined with other Java and Bali destinations.
               </p>
             </div>
 
