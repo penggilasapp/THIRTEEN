@@ -90,8 +90,11 @@ interface TourContextType {
   selectedLang: 'en' | 'id';
   setSelectedLang: (lang: 'en' | 'id') => void;
   // Client Page Routing
-  clientPage: 'home' | 'destinations' | 'experiences' | 'tours' | 'about-us' | 'travel-guide' | 'contact' | 'faq';
-  setClientPage: (page: 'home' | 'destinations' | 'experiences' | 'tours' | 'about-us' | 'travel-guide' | 'contact' | 'faq') => void;
+  clientPage: 'home' | 'destinations' | 'experiences' | 'tours' | 'tour-detail' | 'about-us' | 'travel-guide' | 'contact' | 'faq';
+  setClientPage: (page: 'home' | 'destinations' | 'experiences' | 'tours' | 'tour-detail' | 'about-us' | 'travel-guide' | 'contact' | 'faq') => void;
+  selectedTourId: string | null;
+  setSelectedTourId: (id: string | null) => void;
+  navigateToTourDetail: (tourId: string) => void;
 
   // Inquire Modal Trigger
   inquireModalOpen: boolean;
@@ -173,14 +176,26 @@ export const TourProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [selectedCurrency, setSelectedCurrency] = useState<'USD' | 'IDR' | 'EUR' | 'AUD'>('USD');
   const [selectedLang, setSelectedLang] = useState<'en' | 'id'>('en');
 
+  // Selected Tour for Dedicated Tour Detail Page
+  const [selectedTourId, setSelectedTourId] = useState<string | null>(() => {
+    const hash = window.location.hash.replace('#', '').toLowerCase();
+    if (hash.startsWith('tours/')) {
+      return hash.split('/')[1] || null;
+    }
+    return null;
+  });
+
   // Client Page Routing state
-  const [clientPage, setClientPageState] = useState<'home' | 'destinations' | 'experiences' | 'tours' | 'about-us' | 'travel-guide' | 'contact' | 'faq'>(() => {
+  const [clientPage, setClientPageState] = useState<'home' | 'destinations' | 'experiences' | 'tours' | 'tour-detail' | 'about-us' | 'travel-guide' | 'contact' | 'faq'>(() => {
     const hash = window.location.hash.replace('#', '').toLowerCase();
     if (hash.startsWith('destinations')) {
       return 'destinations';
     }
-    const valid: Array<'home' | 'destinations' | 'experiences' | 'tours' | 'about-us' | 'travel-guide' | 'contact' | 'faq'> = [
-      'home', 'destinations', 'experiences', 'tours', 'about-us', 'travel-guide', 'contact', 'faq'
+    if (hash.startsWith('tours/') && hash.split('/')[1]) {
+      return 'tour-detail';
+    }
+    const valid: Array<'home' | 'destinations' | 'experiences' | 'tours' | 'tour-detail' | 'about-us' | 'travel-guide' | 'contact' | 'faq'> = [
+      'home', 'destinations', 'experiences', 'tours', 'tour-detail', 'about-us', 'travel-guide', 'contact', 'faq'
     ];
     return valid.includes(hash as any) ? (hash as any) : 'home';
   });
@@ -200,11 +215,21 @@ export const TourProvider: React.FC<{ children: React.ReactNode }> = ({ children
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const setClientPage = (page: 'home' | 'destinations' | 'experiences' | 'tours' | 'about-us' | 'travel-guide' | 'contact' | 'faq') => {
+  const navigateToTourDetail = (tourId: string) => {
+    setSelectedTourId(tourId);
+    setClientPageState('tour-detail');
+    window.location.hash = `tours/${tourId}`;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const setClientPage = (page: 'home' | 'destinations' | 'experiences' | 'tours' | 'tour-detail' | 'about-us' | 'travel-guide' | 'contact' | 'faq') => {
     setClientPageState(page);
     if (page === 'destinations') {
       setSelectedRegionSlug(null);
       setSelectedDestinationSlug(null);
+    }
+    if (page !== 'tour-detail') {
+      setSelectedTourId(null);
     }
     window.location.hash = page;
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -222,8 +247,16 @@ export const TourProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setSelectedDestinationSlug(destination);
         return;
       }
-      const valid: Array<'home' | 'destinations' | 'experiences' | 'tours' | 'about-us' | 'travel-guide' | 'contact' | 'faq'> = [
-        'home', 'destinations', 'experiences', 'tours', 'about-us', 'travel-guide', 'contact', 'faq'
+      if (hash.startsWith('tours/')) {
+        const tourId = hash.split('/')[1];
+        if (tourId) {
+          setSelectedTourId(tourId);
+          setClientPageState('tour-detail');
+          return;
+        }
+      }
+      const valid: Array<'home' | 'destinations' | 'experiences' | 'tours' | 'tour-detail' | 'about-us' | 'travel-guide' | 'contact' | 'faq'> = [
+        'home', 'destinations', 'experiences', 'tours', 'tour-detail', 'about-us', 'travel-guide', 'contact', 'faq'
       ];
       if (valid.includes(hash as any)) {
         setClientPageState(hash as any);
@@ -606,6 +639,9 @@ export const TourProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setSelectedLang,
         clientPage,
         setClientPage,
+        selectedTourId,
+        setSelectedTourId,
+        navigateToTourDetail,
         inquireModalOpen,
         setInquireModalOpen,
         preselectedPackageId,

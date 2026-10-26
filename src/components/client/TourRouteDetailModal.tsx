@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTour } from '../../context/TourContext';
 import { TourPackage } from '../../types/tour';
 import { 
   X, 
@@ -14,7 +15,8 @@ import {
   Activity, 
   Utensils, 
   Bed, 
-  ArrowRight
+  ArrowRight,
+  ExternalLink
 } from 'lucide-react';
 
 interface TourRouteDetailModalProps {
@@ -30,6 +32,7 @@ export const TourRouteDetailModal: React.FC<TourRouteDetailModalProps> = ({
   onClose,
   onInquire
 }) => {
+  const { navigateToTourDetail } = useTour();
   if (!pkg) return null;
 
   return (
@@ -297,8 +300,19 @@ export const TourRouteDetailModal: React.FC<TourRouteDetailModalProps> = ({
 
           <div className="flex flex-col-reverse sm:flex-row items-center gap-2.5 sm:gap-3 w-full sm:w-auto justify-end">
             <button
+              onClick={() => {
+                const id = pkg.id;
+                onClose();
+                navigateToTourDetail(id);
+              }}
+              className="w-full sm:w-auto px-4 py-3 rounded-xl bg-white hover:bg-stone-50 text-stone-800 border border-stone-200 text-xs font-semibold cursor-pointer min-h-[44px] flex items-center justify-center gap-1.5"
+            >
+              <ExternalLink className="w-3.5 h-3.5 text-emerald-800" />
+              <span>Full Page Itinerary</span>
+            </button>
+            <button
               onClick={onClose}
-              className="w-full sm:w-auto px-5 py-3 rounded-xl bg-stone-100 hover:bg-stone-200 text-stone-700 text-xs font-semibold cursor-pointer min-h-[44px] flex items-center justify-center"
+              className="w-full sm:w-auto px-4 py-3 rounded-xl bg-stone-100 hover:bg-stone-200 text-stone-700 text-xs font-semibold cursor-pointer min-h-[44px] flex items-center justify-center"
             >
               Close
             </button>
@@ -311,7 +325,7 @@ export const TourRouteDetailModal: React.FC<TourRouteDetailModalProps> = ({
               className="w-full sm:w-auto px-6 py-3 rounded-xl bg-[#0F2922] hover:bg-[#153A30] text-white font-bold text-xs shadow-md flex items-center justify-center gap-2 cursor-pointer min-h-[44px]"
             >
               <Sparkles className="w-4 h-4 text-emerald-300" />
-              <span>Request a Personalized Quote</span>
+              <span>Request a Quote</span>
             </button>
           </div>
         </div>

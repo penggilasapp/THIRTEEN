@@ -79,6 +79,23 @@ export interface TourPackage {
   terrainType?: string;
   fitnessLevel?: string;
   fleetType?: string;
+  galleryImages?: string[];
+  mapWaypoints?: Array<{
+    name: string;
+    lat: number;
+    lng: number;
+    day: number;
+    type: 'city' | 'mountain' | 'waterfall' | 'temple' | 'coast' | 'safari' | 'wildlife';
+    highlight: string;
+    altitude?: string;
+    image?: string;
+  }>;
+  detailedInclusions?: Array<{
+    category: string;
+    icon?: string;
+    items: string[];
+  }>;
+  gearChecklist?: string[];
 }
 
 export type PipelineStatus = 

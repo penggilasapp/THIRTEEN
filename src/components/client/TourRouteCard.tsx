@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTour } from '../../context/TourContext';
 import { TourPackage, TourType } from '../../types/tour';
 import { 
   MapPin, 
@@ -10,7 +11,8 @@ import {
   Mountain, 
   Activity,
   ArrowRight,
-  ShieldCheck
+  ShieldCheck,
+  ChevronRight
 } from 'lucide-react';
 
 interface TourRouteCardProps {
@@ -30,6 +32,8 @@ export const TourRouteCard: React.FC<TourRouteCardProps> = ({
   viewDetailsLabel = 'View Itinerary',
   inquireLabel = 'Request a Personalized Quote'
 }) => {
+  const { navigateToTourDetail } = useTour();
+
   const getTourTypeLabel = (type: TourType) => {
     switch (type) {
       case 'fixed_package':
@@ -49,7 +53,10 @@ export const TourRouteCard: React.FC<TourRouteCardProps> = ({
     <div className="group rounded-3xl bg-[#FAF9F6] border border-stone-200/90 overflow-hidden hover:shadow-xl hover:border-emerald-800/40 transition-all duration-300 flex flex-col justify-between">
       <div>
         {/* Cover Image & Scrim Header */}
-        <div className="relative h-52 sm:h-64 overflow-hidden bg-slate-900">
+        <div 
+          onClick={() => navigateToTourDetail(pkg.id)}
+          className="relative h-52 sm:h-64 overflow-hidden bg-slate-900 cursor-pointer"
+        >
           <img
             src={pkg.coverImage}
             alt={pkg.title}
@@ -202,7 +209,7 @@ export const TourRouteCard: React.FC<TourRouteCardProps> = ({
       {/* Bottom Actions */}
       <div className="p-4 sm:p-6 pt-0 flex flex-col sm:flex-row items-center gap-2.5 sm:gap-3">
         <button
-          onClick={() => onInspect(pkg)}
+          onClick={() => navigateToTourDetail(pkg.id)}
           className="w-full sm:w-1/2 py-3 px-4 rounded-xl bg-white hover:bg-stone-100 text-stone-800 border border-stone-200 text-xs font-semibold transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-2xs min-h-[44px]"
         >
           <Clock className="w-3.5 h-3.5 text-emerald-800" />

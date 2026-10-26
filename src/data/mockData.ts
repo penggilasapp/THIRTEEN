@@ -508,6 +508,324 @@ export const INITIAL_PACKAGES: TourPackage[] = [
         stayLocation: 'End of Tour'
       }
     ]
+  },
+  {
+    id: 'pkg-grand-eastjava-tumpaksewu-baluran',
+    code: 'TT-PKG-05',
+    title: 'The Grand East Java Traverse: Tumpak Sewu, Bromo, Ijen & Baluran Savannah',
+    destinationId: 'dest-bromo',
+    destinationName: 'Mount Bromo, Tumpak Sewu, Ijen & Baluran',
+    tourType: 'multiday_expedition',
+    serviceTier: 'private',
+    durationDays: 5,
+    durationNights: 4,
+    indicativeDuration: '5 Days / 4 Nights',
+    shortDescription: 'From the roaring thousand-stream amphitheater of Tumpak Sewu to the volcanic calderas of Bromo and Ijen, culminating in the wild savannah of Baluran National Park.',
+    experienceNarrative: 'An epic cross-provincial expedition exploring East Java’s most formidable natural wonders. Hike deep into the circular canyon of Tumpak Sewu, watch dawn ignite the Tengger Sand Sea, descend into the blue fire cavern of Mount Ijen, and witness wild banteng and deer roam the Little Africa savannah of Baluran.',
+    highlights: [
+      'Dramatic descent into Tumpak Sewu amphitheater waterfall and Goa Tetes cave',
+      'Private 4x4 Land Cruiser expedition for Bromo sunrise & active crater rim walk',
+      'Midnight hike to Mount Ijen electric-blue flames with certified safety gear',
+      'Wildlife game drive across Bekol Savannah and coastal mangrove boardwalk in Baluran National Park'
+    ],
+    inclusions: [
+      'Private air-conditioned executive vehicle with dedicated chauffeur throughout all 5 days',
+      'Private 4x4 Toyota Land Cruiser for Bromo caldera and Baluran safari trails',
+      '4 nights accommodation in handpicked mountain lodges and coastal boutique resorts',
+      'Certified local mountain guides, canyon specialists, and park rangers',
+      'High-specification gas respirators and high-lumen headlamps for Mount Ijen',
+      'All national park admissions, conservation levies, and waterfall entrance tickets',
+      'Daily artisanal breakfasts and selected culinary highlights'
+    ],
+    exclusions: [
+      'Domestic flights to Surabaya / from Banyuwangi',
+      'Personal travel insurance',
+      'Optional horse hire at Bromo',
+      'Driver and guide gratuities'
+    ],
+    safetyMandates: [
+      'Tumpak Sewu canyon descent involves wet rocks and bamboo ladders; sturdy water shoes mandatory',
+      'Ijen crater trek requires good cardiovascular endurance and medical fitness clearance'
+    ],
+    targetAudience: 'Adventure seekers, nature photographers, active couples, and overland explorers.',
+    active: true,
+    coverImage: 'https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=1200&q=80',
+    indicativePriceIdr: 16800000,
+    indicativePriceUsd: 1050,
+    routeSummary: 'Surabaya / Malang → Tumpak Sewu Waterfall → Bromo Caldera → Ijen Blue Fire → Baluran Little Africa → Banyuwangi',
+    routeWaypoints: ['Surabaya / Malang', 'Tumpak Sewu Canyon', 'Cemoro Lawang Caldera', 'King Kong Hill (2,600m)', 'Ijen Crater Basin', 'Baluran Bekol Savannah', 'Bama Mangrove Coast', 'Banyuwangi Port / Airport'],
+    terrainType: 'Canyon Ravines, Volcanic Caldera, Alpine Sulfur Trails, & Tropical Savannah',
+    fitnessLevel: 'Active & Adventurous',
+    fleetType: 'Executive AC Van & Dedicated 4x4 Toyota Land Cruiser',
+    itineraryDays: [
+      {
+        dayNumber: 1,
+        title: 'Arrival in East Java & The Roaring Falls of Tumpak Sewu',
+        subtitle: 'Malang / Surabaya → Lumajang Canyon Foothills',
+        schedule: [
+          { time: '08:00', activity: 'Private chauffeur pickup from Surabaya airport (SUB) or Malang station', location: 'Surabaya / Malang', partnerTypeNeeded: 'driver_transport' },
+          { time: '11:30', activity: 'Arrive at Pronojiwo; panoramic overview of Tumpak Sewu waterfall curtains', location: 'Tumpak Sewu Panorama', partnerTypeNeeded: 'mountain_guide' },
+          { time: '13:00', activity: 'Guided descent to canyon floor and cavernous Goa Tetes waterfall', location: 'Goa Tetes' },
+          { time: '17:00', activity: 'Check-in to rustic eco-lodge nestled near the volcano base', location: 'Pronojiwo Lodge', partnerTypeNeeded: 'boutique_stay' }
+        ],
+        meals: ['Lunch', 'Dinner'],
+        stayLocation: 'Artha Cottages / Tumpak Sewu Eco Lodge'
+      },
+      {
+        dayNumber: 2,
+        title: 'Overland to Tengger Caldera & Bromo Golden Sunset',
+        subtitle: 'Pronojiwo → Cemoro Lawang Caldera Rim',
+        schedule: [
+          { time: '08:30', activity: 'Hearty highland breakfast with fresh East Java coffee', location: 'Eco Lodge' },
+          { time: '10:00', activity: 'Scenic winding drive through lush highlands toward Mount Bromo', location: 'Tengger Range', partnerTypeNeeded: 'driver_transport' },
+          { time: '14:30', activity: 'Check-in to mountain lodge overlooking the vast sea-of-sand', location: 'Cemoro Lawang', partnerTypeNeeded: 'boutique_stay' },
+          { time: '17:00', activity: 'Sunset viewpoint walk over the mist-filled Tengger caldera', location: 'Seruni Point' }
+        ],
+        meals: ['Breakfast', 'Dinner'],
+        stayLocation: 'Jiwa Jawa Resort Bromo / Plataran Bromo'
+      },
+      {
+        dayNumber: 3,
+        title: 'Bromo Dawn Spectacle & Scenic Drive to Ijen Coffee Plantations',
+        subtitle: 'King Kong Hill → Bromo Crater → Banyuwangi Rainforest',
+        schedule: [
+          { time: '03:15', activity: 'Private 4x4 Land Cruiser departure to King Kong Hill for sunrise', location: 'King Kong Hill', partnerTypeNeeded: 'jeep_operator' },
+          { time: '06:30', activity: 'Cross the Sea of Sand on foot and climb the 250 stairs to Bromo active crater rim', location: 'Bromo Crater Rim', partnerTypeNeeded: 'mountain_guide' },
+          { time: '09:00', activity: 'Warm breakfast at lodge & shower refresh before departure', location: 'Lodge' },
+          { time: '11:00', activity: 'Scenic private transit past Jember and coffee plantations toward Banyuwangi', location: 'East Java Highway', partnerTypeNeeded: 'driver_transport' },
+          { time: '17:00', activity: 'Check-in to oceanfront or highland resort; early rest for midnight trek', location: 'Banyuwangi Resort', partnerTypeNeeded: 'boutique_stay' }
+        ],
+        meals: ['Breakfast', 'Lunch', 'Dinner'],
+        stayLocation: 'Dialoog Banyuwangi / Ijen Resort'
+      },
+      {
+        dayNumber: 4,
+        title: 'Ijen Midnight Electric-Blue Flame & Dawn Over Turquoise Lake',
+        subtitle: 'Paltuding Basecamp → Acidic Crater → Rest & Recovery',
+        schedule: [
+          { time: '00:30', activity: 'Private wake-up, warm ginger tea, and 45-minute drive to Paltuding basecamp', location: 'Paltuding Basecamp', partnerTypeNeeded: 'driver_transport' },
+          { time: '01:45', activity: 'Ascent to crater rim with certified miner guide and custom safety respirators', location: 'Mount Ijen Trail', partnerTypeNeeded: 'mountain_guide' },
+          { time: '04:00', activity: 'Witness otherworldly electric-blue flames followed by sunrise over the world’s largest acidic lake', location: 'Ijen Acidic Lake' },
+          { time: '08:00', activity: 'Descend to basecamp; return to resort for gourmet brunch and leisurely spa rest', location: 'Banyuwangi Resort' }
+        ],
+        meals: ['Light Refreshment', 'Gourmet Brunch', 'Dinner'],
+        stayLocation: 'Dialoog Banyuwangi'
+      },
+      {
+        dayNumber: 5,
+        title: 'Baluran National Park Little Africa Safari & Farewell',
+        subtitle: 'Bekol Savannah → Bama Beach → Airport / Bali Transfer',
+        schedule: [
+          { time: '06:30', activity: 'Early morning game drive through Baluran National Park savannah', location: 'Bekol Savannah', partnerTypeNeeded: 'mountain_guide' },
+          { time: '08:30', activity: 'Spot wild water buffalo (Javan banteng), deer, and green peafowls in natural habitat', location: 'Baluran Watchtower' },
+          { time: '10:30', activity: 'Stroll the tranquil mangrove boardwalk and white coral shore at Bama Beach', location: 'Bama Beach' },
+          { time: '13:00', activity: 'Private chauffeur transfer to Banyuwangi Airport (BWX) or Ketapang Ferry to Bali', location: 'BWX / Ferry Terminal', partnerTypeNeeded: 'driver_transport' }
+        ],
+        meals: ['Breakfast', 'Seafood Lunch'],
+        stayLocation: 'End of Traverse'
+      }
+    ]
+  },
+  {
+    id: 'pkg-wild-coast-sukamade-pulaumerah',
+    code: 'TT-PKG-06',
+    title: 'Wild Java Coast & Sea Turtle Sanctuary: Meru Betiri & Pulau Merah',
+    destinationId: 'dest-meru-betiri',
+    destinationName: 'Meru Betiri, Sukamade & Pulau Merah',
+    tourType: 'custom_private',
+    serviceTier: 'private',
+    durationDays: 3,
+    durationNights: 2,
+    indicativeDuration: '3 Days / 2 Nights',
+    shortDescription: 'Venture deep into the pristine rainforest of Meru Betiri National Park, witness giant sea turtles laying eggs on secluded Sukamade beach, and catch the sunset at Pulau Merah.',
+    experienceNarrative: 'An extraordinary off-grid wilderness expedition for wildlife and nature lovers. Board a modified 4x4 to traverse rocky riverbeds and dense coastal jungle in Meru Betiri, conduct a guided midnight beach patrol with national park rangers, participate in baby turtle ocean release at dawn, and conclude with golden coastal views of Pulau Merah.',
+    highlights: [
+      'Rugged 4x4 river-crossing expedition into remote Meru Betiri National Park',
+      'Night-time beach patrol at Sukamade to observe giant green and olive ridley sea turtles nesting',
+      'Morning release of newborn turtle hatchlings into the rolling Indian Ocean surf',
+      'Sunset photography and coastal relaxation along the red islet of Pulau Merah (Red Island)'
+    ],
+    inclusions: [
+      'Specialized 4x4 safari expedition vehicle and certified jungle driver for all 3 days',
+      '1 Night eco-lodge stay inside Sukamade Turtle Conservation Station',
+      '1 Night boutique beachfront stay at Pulau Merah',
+      'Official Meru Betiri National Park conservation permits and ranger patrol guidance',
+      'Direct contribution to sea turtle hatchery protection programs',
+      'All meals freshly prepared in local coastal villages'
+    ],
+    exclusions: [
+      'Domestic flights to Banyuwangi (BWX)',
+      'Surfboard rental at Pulau Merah (optional on site)',
+      'Personal spending and gratuities'
+    ],
+    safetyMandates: [
+      'Meru Betiri requires crossing several shallow rivers; luggage must be in splash-proof duffels',
+      'No flash photography or white torches allowed on Sukamade beach during turtle nesting (red light only)'
+    ],
+    targetAudience: 'Wildlife conservationists, adventurous families, eco-travelers, and photographers.',
+    active: true,
+    coverImage: 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=1200&q=80',
+    indicativePriceIdr: 8900000,
+    indicativePriceUsd: 560,
+    routeSummary: 'Banyuwangi → Meru Betiri Jungle 4x4 → Sukamade Beach (Turtle Patrol) → Hatchling Release → Pulau Merah Sunset → Banyuwangi',
+    routeWaypoints: ['Banyuwangi Airport / City', 'Sarongan Village', 'Meru Betiri Jungle River Crossing', 'Sukamade Turtle Station', 'Pulau Merah Red Islet', 'Banyuwangi Return'],
+    terrainType: 'Dense Coastal Jungle, Rocky River Crossings, Protected Marine Beach, & Surf Coast',
+    fitnessLevel: 'Moderate Off-Grid',
+    fleetType: 'Heavy-Duty 4x4 Toyota Land Cruiser with Snorkel & Winch',
+    itineraryDays: [
+      {
+        dayNumber: 1,
+        title: 'River Crossings & Into the Wilderness of Meru Betiri',
+        subtitle: 'Banyuwangi → Sukamade Rainforest Station',
+        schedule: [
+          { time: '08:30', activity: 'Private 4x4 pickup from Banyuwangi hotel or airport; scenic drive south past cocoa estates', location: 'Banyuwangi', partnerTypeNeeded: 'driver_transport' },
+          { time: '11:00', activity: 'Enter Meru Betiri National Park boundary; engage 4x4 4-wheel drive through riverbeds', location: 'Meru Betiri Trails', partnerTypeNeeded: 'jeep_operator' },
+          { time: '13:00', activity: 'Picnic lunch alongside secluded Green Bay (Teluk Hijau) turquoise waters', location: 'Teluk Hijau' },
+          { time: '16:00', activity: 'Arrive at Sukamade conservation station; orientation with resident marine biologists', location: 'Sukamade Station', partnerTypeNeeded: 'boutique_stay' },
+          { time: '20:00', activity: 'Quiet guided patrol on the beach under star canopy; watch female turtles dig nests and lay eggs', location: 'Sukamade Beach', partnerTypeNeeded: 'mountain_guide' }
+        ],
+        meals: ['Picnic Lunch', 'Home-cooked Javanese Dinner'],
+        stayLocation: 'Sukamade Conservation Guest House'
+      },
+      {
+        dayNumber: 2,
+        title: 'Ocean Hatchling Release & Golden Sunset at Pulau Merah',
+        subtitle: 'Sukamade Marine Sanctuary → Pulau Merah Beachfront',
+        schedule: [
+          { time: '06:00', activity: 'Release baby turtle hatchlings from conservation nursery into the ocean at sunrise', location: 'Sukamade Shoreline', partnerTypeNeeded: 'mountain_guide' },
+          { time: '08:00', activity: 'Simple traditional breakfast at station and pack gear', location: 'Sukamade Dining' },
+          { time: '09:30', activity: '4x4 transit back through lush rainforest and traditional rubber plantations', location: 'Meru Betiri Corridor', partnerTypeNeeded: 'jeep_operator' },
+          { time: '14:30', activity: 'Arrive at Pulau Merah; check-in to charming coastal lodge facing the iconic red hill', location: 'Pulau Merah', partnerTypeNeeded: 'boutique_stay' },
+          { time: '17:15', activity: 'Watch spectacular sunset over the Indian Ocean as low tide reveals the red islet', location: 'Pulau Merah Coast' }
+        ],
+        meals: ['Breakfast', 'Local Lunch', 'Grilled Seafood Dinner'],
+        stayLocation: 'Pulau Merah Beachfront Boutique'
+      },
+      {
+        dayNumber: 3,
+        title: 'Morning Coastal Breeze & Return Transit',
+        subtitle: 'Pulau Merah → Banyuwangi Transit Hub',
+        schedule: [
+          { time: '07:30', activity: 'Morning beach stroll or optional beginner surf session with local instructor', location: 'Pulau Merah Surf Beach' },
+          { time: '10:30', activity: 'Fresh tropical breakfast and leisurely departure', location: 'Beach Lodge' },
+          { time: '11:30', activity: 'Comfortable chauffeured return transit to Banyuwangi Airport (BWX) or Ketapang Port', location: 'Banyuwangi Port / Airport', partnerTypeNeeded: 'driver_transport' }
+        ],
+        meals: ['Tropical Breakfast'],
+        stayLocation: 'End of Expedition'
+      }
+    ]
+  },
+  {
+    id: 'pkg-bali-grand-circuit-batur-uluwatu',
+    code: 'TT-PKG-07',
+    title: 'The Grand Bali Circuit: Ubud, Mount Batur Sunrise, Canggu & Uluwatu Cliffs',
+    destinationId: 'dest-bali',
+    destinationName: 'Ubud, Batur, Canggu & Uluwatu',
+    tourType: 'fixed_package',
+    serviceTier: 'premium_concierge',
+    durationDays: 5,
+    durationNights: 4,
+    indicativeDuration: '5 Days / 4 Nights',
+    shortDescription: 'A complete luxury loop around the Island of the Gods: highland sunrise on Mount Batur, sacred arts in Ubud, beach vibes in Canggu & Seminyak, and cliffside fire dance at Uluwatu.',
+    experienceNarrative: 'Crafted for discerning travelers who want to experience the complete spectrum of Bali without the stress of logistics. From the cool alpine breezes of Kintamani volcano caldera to the dramatic 70-meter sea cliffs of Uluwatu and the chic beach clubs of Canggu, this private journey guarantees executive chauffeuring, luxury villas, and exclusive cultural entries.',
+    highlights: [
+      'Private 4x4 sunrise excursion across Mount Batur black volcanic lava fields in Kintamani',
+      'Artisanal private workshops and sacred temple blessing in Ubud',
+      'Relaxation and gourmet coastal dining along Seminyak and Canggu beaches',
+      'Sunset VIP clifftop amphitheater seats for Uluwatu Temple Kecak fire dance'
+    ],
+    inclusions: [
+      'Dedicated private air-conditioned executive vehicle and professional chauffeur for all 5 days',
+      'Private 4x4 Land Cruiser for Mount Batur caldera sunrise',
+      '2 Nights luxury pool villa in Ubud + 2 Nights ocean-facing luxury resort in South Bali',
+      'All temple donations, sacred sarongs, and conservation passes',
+      'Certified local Balinese cultural specialist and guide',
+      'VIP tickets to Uluwatu Kecak dance performance',
+      'Daily gourmet breakfasts and signature curated dinners'
+    ],
+    exclusions: [
+      'International flights to Denpasar (DPS)',
+      'Personal spa treatments (available on request)',
+      'Travel insurance and driver gratuities'
+    ],
+    safetyMandates: [
+      'Batur morning excursion requires a light thermal jacket as temperatures drop to 15°C before dawn',
+      'Modest shoulder/knee covering required at all Balinese sacred temples'
+    ],
+    targetAudience: 'Couples, luxury honeymooners, first-time Indonesia travelers, and small families.',
+    active: true,
+    coverImage: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1200&q=80',
+    indicativePriceIdr: 18500000,
+    indicativePriceUsd: 1150,
+    routeSummary: 'Denpasar (DPS) → Ubud Valley → Mount Batur Sunrise (Kintamani) → Canggu / Seminyak Beach → Nusa Dua → Uluwatu Cliffs',
+    routeWaypoints: ['DPS International Airport', 'Ubud Royal Palace & Gorge', 'Mount Batur Caldera (1,717m)', 'Canggu Surf Coast', 'Seminyak Pavilions', 'Nusa Dua White Sands', 'Uluwatu Clifftop Temple'],
+    terrainType: 'Volcanic Caldera, River Gorges, Coastal Sands, & Oceanic Coral Cliffs',
+    fitnessLevel: 'Gentle & Relaxed',
+    fleetType: 'Executive Mercedes / Alphard Van & Dedicated 4x4 Batur Jeep',
+    itineraryDays: [
+      {
+        dayNumber: 1,
+        title: 'Arrival & Secluded Sanctuary in Ubud',
+        subtitle: 'DPS Airport → Ayung River Valley Villa',
+        schedule: [
+          { time: '13:00', activity: 'VIP airport greeting at DPS with chilled towels and private chauffeur transfer', location: 'DPS Airport', partnerTypeNeeded: 'driver_transport' },
+          { time: '15:30', activity: 'Private check-in to luxury pool villa in Ubud; welcome flower blessing', location: 'Ubud Valley Resort', partnerTypeNeeded: 'boutique_stay' },
+          { time: '18:30', activity: 'Three-course welcome dinner highlighting contemporary Balinese spice architecture', location: 'Resort Terrace' }
+        ],
+        meals: ['Dinner'],
+        stayLocation: 'Mandapa / Viceroy Bali Ubud'
+      },
+      {
+        dayNumber: 2,
+        title: 'Mount Batur 4x4 Dawn Sunrise & Kintamani Highlands',
+        subtitle: 'Black Lava Fields → Floating Hot Springs → Ubud Arts',
+        schedule: [
+          { time: '04:00', activity: 'Private 4x4 Land Cruiser drive up the slopes of Mount Batur for panoramic sunrise above clouds', location: 'Mount Batur Caldera', partnerTypeNeeded: 'jeep_operator' },
+          { time: '07:00', activity: 'Off-road exploration across ancient black lava dunes from the 1968 eruption', location: 'Black Lava Field', partnerTypeNeeded: 'mountain_guide' },
+          { time: '08:30', activity: 'Rejuvenating soak in mineral hot springs overlooking Lake Batur', location: 'Toya Devasya' },
+          { time: '14:00', activity: 'Afternoon private visit to Celuk master silversmiths and Ubud royal palace', location: 'Ubud Center', partnerTypeNeeded: 'driver_transport' }
+        ],
+        meals: ['Sunrise Breakfast', 'Highland Lunch'],
+        stayLocation: 'Viceroy Bali Ubud'
+      },
+      {
+        dayNumber: 3,
+        title: 'Descent to South Bali & The Coastal Energy of Canggu & Seminyak',
+        subtitle: 'Ubud Valley → Canggu Surf & Cosmopolitan Beachfront',
+        schedule: [
+          { time: '09:30', activity: 'Leisurely brunch overlooking the river ravine and late check-out', location: 'Ubud Resort' },
+          { time: '11:30', activity: 'Private chauffeur transfer south to Canggu and Seminyak coastal enclave', location: 'Canggu Coast', partnerTypeNeeded: 'driver_transport' },
+          { time: '14:30', activity: 'Check-in to oceanfront suite in Seminyak; afternoon beachside relaxation', location: 'Seminyak Luxury Resort', partnerTypeNeeded: 'boutique_stay' },
+          { time: '17:30', activity: 'Sunset cocktail tasting overlooking the Indian Ocean surf break', location: 'Seminyak Beachfront' }
+        ],
+        meals: ['Breakfast', 'Sunset Dining'],
+        stayLocation: 'The Legian Seminyak / Alila Seminyak'
+      },
+      {
+        dayNumber: 4,
+        title: 'Nusa Dua White Sands & Dramatic Uluwatu Clifftop Fire Dance',
+        subtitle: 'Water Blow Natural Blowhole → 70m Sea Cliffs → Kecak Chant',
+        schedule: [
+          { time: '09:00', activity: 'Chauffeured drive to the tranquil white sand beaches and Water Blow of Nusa Dua', location: 'Nusa Dua Peninsula', partnerTypeNeeded: 'driver_transport' },
+          { time: '12:30', activity: 'Fresh seafood lunch at seaside pavilion overlooking calm turquoise lagoon', location: 'Jimbaran Bay' },
+          { time: '16:00', activity: 'Ascent to ancient 11th-century Uluwatu Temple perched 70 meters above crashing waves', location: 'Uluwatu Temple', partnerTypeNeeded: 'mountain_guide' },
+          { time: '18:00', activity: 'VIP amphitheater seats for sacred Kecak and fire dance against flaming sunset horizon', location: 'Uluwatu Amphitheater' }
+        ],
+        meals: ['Breakfast', 'Seafood Lunch', 'Dinner'],
+        stayLocation: 'The Legian Seminyak / Bulgari Resort Bali'
+      },
+      {
+        dayNumber: 5,
+        title: 'Tropical Morning & Private Airport Transfer',
+        subtitle: 'Farewell Bali → DPS International Departure',
+        schedule: [
+          { time: '08:00', activity: 'Morning breakfast on the veranda accompanied by sound of ocean surf', location: 'Resort Dining' },
+          { time: '11:00', activity: 'Private chauffeur transfer to Denpasar International Airport (DPS) for onward flight', location: 'DPS Airport', partnerTypeNeeded: 'driver_transport' }
+        ],
+        meals: ['Breakfast'],
+        stayLocation: 'End of Journey'
+      }
+    ]
   }
 ];
 

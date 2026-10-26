@@ -8,6 +8,7 @@ import { AboutUsSection } from './AboutUsSection';
 import { TravelGuideSection } from './TravelGuideSection';
 import { ContactSection } from './ContactSection';
 import { FAQSection } from './FAQSection';
+import { TourDetailPage } from './TourDetailPage';
 import { ClientPortalView } from './ClientPortalView';
 import { Footer } from './Footer';
 import { ChevronRight, Home, ArrowLeft } from 'lucide-react';
@@ -70,7 +71,7 @@ export const ClientApp: React.FC = () => {
         ) : (
           <div className="space-y-0">
             {/* Dedicated Page Breadcrumb Navigation Header */}
-            {pageInfo && clientPage !== 'destinations' && (
+            {pageInfo && clientPage !== 'destinations' && clientPage !== 'tour-detail' && (
               <div className="bg-[#0B2019] text-white border-b border-emerald-950/80 py-8 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-7xl mx-auto flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                   <div>
@@ -110,6 +111,7 @@ export const ClientApp: React.FC = () => {
             {clientPage === 'destinations' && <DestinationsSection />}
             {clientPage === 'experiences' && <ExperiencesSection />}
             {clientPage === 'tours' && <ToursSection />}
+            {clientPage === 'tour-detail' && <TourDetailPage />}
             {clientPage === 'about-us' && <AboutUsSection />}
             {clientPage === 'travel-guide' && <TravelGuideSection />}
             {clientPage === 'contact' && <ContactSection />}

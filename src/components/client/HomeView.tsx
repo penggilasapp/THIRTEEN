@@ -27,7 +27,8 @@ export const HomeView: React.FC = () => {
     packages, 
     setClientPage, 
     openInquireForPackage,
-    navigateToDestinationRoute
+    navigateToDestinationRoute,
+    navigateToTourDetail
   } = useTour();
 
   const [inspectingPackage, setInspectingPackage] = useState<TourPackage | null>(null);
@@ -73,7 +74,7 @@ export const HomeView: React.FC = () => {
             {featuredPackages.map((pkg, idx) => (
               <div
                 key={pkg.id}
-                onClick={() => setInspectingPackage(pkg)}
+                onClick={() => navigateToTourDetail(pkg.id)}
                 className="group rounded-3xl bg-white border border-stone-200 overflow-hidden hover:shadow-xl hover:border-emerald-800/40 transition-all duration-300 flex flex-col justify-between cursor-pointer"
               >
                 <div>
@@ -149,7 +150,7 @@ export const HomeView: React.FC = () => {
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
-                      setInspectingPackage(pkg);
+                      navigateToTourDetail(pkg.id);
                     }}
                     className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-emerald-50 text-emerald-900 group-hover:bg-[#0F2922] group-hover:text-white flex items-center justify-center shrink-0 transition-colors shadow-2xs mt-3 cursor-pointer"
                     aria-label={`View itinerary for ${pkg.title}`}
